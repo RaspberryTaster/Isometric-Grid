@@ -39,7 +39,7 @@ public class SurroundingNodes : MonoBehaviour
 		List<Node> outerNeighbours = new List<Node>();
 		for (int i = 0; i < neightbours.Count; i++)
 		{
-			if (neightbours[i].walkable && !surroundingNodes.Contains(neightbours[i]))
+			if (neightbours[i].Walkable && !surroundingNodes.Contains(neightbours[i]))
 			{
 				int distance = Pathfinding.GetDistance(center, neightbours[i]);
 				if (distance % 14 == 0)
@@ -111,7 +111,7 @@ public class SurroundingNodes : MonoBehaviour
 			Gizmos.color = n == closestNode? Color.yellow : Color.magenta;
 			Vector3 size = Vector3.one * (NodeDiameter - gizmoBoundry);
 			size.y = gizmoHeight;
-			Gizmos.DrawWireCube(n.worldPosition, size);
+			Gizmos.DrawWireCube(n.WorldPosition, size);
 		}
 		foreach(Node n in diagonalNodes)
 		{
@@ -121,7 +121,7 @@ public class SurroundingNodes : MonoBehaviour
 			}
 			Vector3 size = Vector3.one * (NodeDiameter - gizmoBoundry);
 			size.y = gizmoHeight;
-			Gizmos.DrawWireCube(n.worldPosition, size);
+			Gizmos.DrawWireCube(n.WorldPosition, size);
 		}
 	}
 }

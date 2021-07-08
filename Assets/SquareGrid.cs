@@ -8,7 +8,7 @@ using UnityEngine;
 [RequireComponent(typeof(NodeSpawner))]
 public class SquareGrid : MonoBehaviour
 {
-	public Vector2 gridWorldSize;
+	public Vector2Int gridSize = new Vector2Int(30, 30);
 	public float NodeRadius = 0.5f;
 
 	public float NodeDiameter => NodeRadius * 2;
@@ -20,24 +20,33 @@ public class SquareGrid : MonoBehaviour
 	public bool DrawGizmos;
 
 	private NodeSpawner NodeSpawner;
-	private int gridSizeX, gridSizeY;
+
 
 	private void OnValidate()
 	{
-		gridSizeX = Mathf.RoundToInt(gridWorldSize.x / NodeDiameter);
-		gridSizeY = Mathf.RoundToInt(gridWorldSize.y / NodeDiameter);
+		RoundGridSize();
+	}
+
+	private void RoundGridSize()
+	{
+		gridSize.x = Mathf.RoundToInt(gridSize.x / NodeDiameter);
+		gridSize.y = Mathf.RoundToInt(gridSize.y / NodeDiameter);
 	}
 
 	void Awake()
 	{
 		NodeSpawner = GetComponent<NodeSpawner>();
-
-		gridSizeX = Mathf.RoundToInt(gridWorldSize.x / NodeDiameter);
-		gridSizeY = Mathf.RoundToInt(gridWorldSize.y / NodeDiameter);
+		NodeSpawner.SetRegions();
+		RoundGridSize();
 
 		CreateGrid();
 	}
-	
+
+
+	private void Start()
+	{
+
+	}
 
 	[Button]
 	void CreateGrid()
@@ -51,8 +60,8 @@ public class SquareGrid : MonoBehaviour
 		GridNodes.transform.parent = transform;
 		GridNodes.transform.position = Vector3.zero;
 
-		NodeGrid = new NodeGrid(new Vector2Int(gridSizeX, gridSizeY));
-		Vector3 worldBottomLeft = transform.position - Vector3.right * gridSizeX/ 2 - Vector3.forward * gridSizeY / 2;
+		NodeGrid = new NodeGrid(new Vector2Int(gridSize.x, gridSize.y));
+		Vector3 worldBottomLeft = transform.position - Vector3.right * gridSize.x/ 2 - Vector3.forward * gridSize.y / 2;
 
 		for (int x = 0; x < NodeGrid.NodeArray.GetLength(0); x++)
 		{
@@ -64,8 +73,9 @@ public class SquareGrid : MonoBehaviour
 		}
 	}
 
-	public float gizmoBoundry = .1f;
-	public float gizmoNodeHeight = 1;
+	private float gizmoBoundry = .1f;
+	private float gizmoNodeHeight = 1;
+
 	Vector3 GizmoNodeSize
 	{
 		get
@@ -77,14 +87,14 @@ public class SquareGrid : MonoBehaviour
 	}
 	void OnDrawGizmos()
 	{
-		Gizmos.DrawWireCube(transform.position, new Vector3(gridSizeX, gizmoNodeHeight,gridSizeY));
+		Gizmos.DrawWireCube(transform.position, new Vector3(gridSize.x, gizmoNodeHeight,gridSize.y));
 
 		if (!DrawGizmos) return;
 		if (NodeGrid != null)
 		{
 			foreach (Node n in NodeGrid.NodeArray)
 			{
-				Gizmos.DrawWireCube(n.worldPosition, GizmoNodeSize);
+				Gizmos.DrawWireCube(n.WorldPosition, GizmoNodeSize);
 			}
 		}
 	}

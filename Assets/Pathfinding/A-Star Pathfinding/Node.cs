@@ -9,39 +9,38 @@ public enum TIleMode
 [System.Serializable]
 public class Node : IHeapItem<Node>
 {
-	public string Name;
+	public string Name = "Node";
 	public int DefaultNodeIndex;
 
-	public bool selected;
-	public bool walkable;
-	public Vector3 worldPosition;
-	public int gridPositionX;
-	public int gridPositionY;
+	public bool Selected;
+	public bool Walkable;
+	public Vector3 WorldPosition;
+	public Vector2Int GridPosition;
 
-	public int gCost;
-	public int hCost;
+	public int GCost;
+	public int HCost;
+	public int MovementPenalty;
 	public Node parent;
 	public NodeObject nodeObject;
 	int heapIndex;
-
-	public Node(bool _walkable, Vector3 _worldPos, int _gridX, int _gridY,int  DefaultNodeIndex, NodeObject nodeObject = null)
+	public Node(bool _walkable, Vector3 _worldPos, int _gridX, int _gridY,int  DefaultNodeIndex, string name, int penalty, NodeObject nodeObject = null)
 	{
-		walkable = _walkable;
-		worldPosition = _worldPos;
-		gridPositionX = _gridX;
-		gridPositionY = _gridY;
+		Walkable = _walkable;
+		WorldPosition = _worldPos;
+		GridPosition = new Vector2Int(_gridX, _gridY);
 		this.nodeObject = nodeObject;
 		this.DefaultNodeIndex = DefaultNodeIndex;
-		this.nodeObject.transform.position = worldPosition;
+		this.nodeObject.transform.position = WorldPosition;
 		SetColor(DefaultNodeIndex);
-		Name = Designation();
+		Name = name;
+		MovementPenalty = penalty;
 	}
 
 	public int fCost
 	{
 		get
 		{
-			return gCost + hCost;
+			return GCost + HCost;
 		}
 	}
 
@@ -62,14 +61,14 @@ public class Node : IHeapItem<Node>
 		int compare = fCost.CompareTo(nodeToCompare.fCost);
 		if (compare == 0)
 		{
-			compare = hCost.CompareTo(nodeToCompare.hCost);
+			compare = HCost.CompareTo(nodeToCompare.HCost);
 		}
 		return -compare;
 	}
 
 	public string Designation()
 	{
-		return $"Grid position: ({gridPositionX}, {gridPositionY}), World position: {worldPosition}";
+		return $"Grid position: ({GridPosition.x}, {GridPosition.y}), World position: {WorldPosition}";
 	}
 
 	public void SetColor(int index)

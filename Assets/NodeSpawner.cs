@@ -12,19 +12,32 @@ public class NodeSpawner : MonoBehaviour
             return hits.Length > 0;
         }
     }
-    private Vector3 direction = -Vector3.up;
-    public float maxDistance;
-    public LayerMask layerMask;
+    private Vector3 direction = Vector3.down;
+    private float maxDistance = 20;
+    public LayerMask EnviromentMask;
+    public TerrainType[] WalkableRegions = new TerrainType[0];
     public Vector3 positionOffset = Vector3.zero;
     private NodeObject nodeObject;
     RaycastHit hit;
     public RaycastHit[] hits = new RaycastHit[0];
 
-    public void Spawn(int x, int y, Vector3 worldPoint, NodeObject nodePrefab, GameObject GridNodes, NodeGrid NodeGrid)
-	{
+    Dictionary<int, int> walkableRegionDictionary = new Dictionary<int, int>();
 
-        this.nodeObject = Instantiate(nodePrefab, worldPoint, Quaternion.identity);
-        hits = Physics.BoxCastAll(worldPoint, this.nodeObject.transform.lossyScale / 2, direction, this.nodeObject.transform.rotation, maxDistance, layerMask);
+	public void SetRegions()
+	{
+		foreach (TerrainType region in WalkableRegions)
+		{
+			EnviromentMask.value += region.terrainMask.value;
+			walkableRegionDictionary.Add((int)Mathf.Log(region.terrainMask.value, 2), region.penalty);
+		}
+	}
+
+	public void Spawn(int x, int y, Vector3 worldPoint, NodeObject nodePrefab, GameObject GridNodes, NodeGrid NodeGrid)
+	{
+        string Name = "N/A";
+        int movementPenalty = 99;
+        nodeObject = Instantiate(nodePrefab, worldPoint, Quaternion.identity);
+        hits = Physics.BoxCastAll(worldPoint, nodeObject.transform.lossyScale / 2, direction, nodeObject.transform.rotation, maxDistance, EnviromentMask);
         bool walkable = false;
         if (hits.Length > 0)
         {
@@ -45,25 +58,27 @@ public class NodeSpawner : MonoBehaviour
 
 
             Vector3 vector3 = hit.point + positionOffset + new Vector3(0, this.nodeObject.rnd.bounds.size.y / 2, 0);
-            this.nodeObject.transform.position = new Vector3(this.nodeObject.transform.position.x, vector3.y, this.nodeObject.transform.position.z);
+            nodeObject.transform.position = new Vector3(nodeObject.transform.position.x, vector3.y, this.nodeObject.transform.position.z);
+            Name = hit.transform.gameObject.name;
             walkable = !(hit.transform.gameObject.layer == LayerMask.NameToLayer("Unwalkable"));
         }
 
-        worldPoint = this.nodeObject.transform.position;
+        worldPoint = nodeObject.transform.position;
 
         TIleMode tileMode;
         if(walkable)
 		{
+            walkableRegionDictionary.TryGetValue(hit.collider.gameObject.layer, out movementPenalty);
             tileMode = TIleMode.DEFAULT;
         }
         else
 		{
             tileMode = TIleMode.UNREACHABLE;
 		}
-        this.nodeObject.transform.parent = GridNodes.transform;
-        NodeGrid.NodeArray[x, y] = new Node(walkable, worldPoint, x, y, (int)tileMode,this.nodeObject);
-
-        this.nodeObject = null;
+        
+        nodeObject.transform.parent = GridNodes.transform;
+        NodeGrid.NodeArray[x, y] = new Node(walkable, worldPoint, x, y, (int)tileMode, Name, movementPenalty, nodeObject);
+        nodeObject = null;
     }
 
     void OnDrawGizmos()
@@ -84,4 +99,10 @@ public class NodeSpawner : MonoBehaviour
             Gizmos.DrawRay(nodeObject.transform.position, direction * maxDistance);
         }
     }
+}
+[System.Serializable]
+public class TerrainType
+{
+    public LayerMask terrainMask;
+    public int penalty;
 }

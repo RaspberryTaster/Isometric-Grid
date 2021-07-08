@@ -21,7 +21,6 @@ namespace Assets.Movement
 		{
 			actions.Add(action);
 			actionNames.Add(action_Types);
-			queue_Component.actionCount = actions.Count;
 			Start_If_First_In_Line(action);
 		}
 
@@ -56,7 +55,6 @@ namespace Assets.Movement
 			}
 			actionNames.RemoveAt(actions.IndexOf(action));
 			actions.Remove(action);
-			queue_Component.actionCount = actions.Count;
 			if(next)
 			{
 				Start_First_In_Line();
@@ -70,7 +68,6 @@ namespace Assets.Movement
 			{
 				actions[0].Exit();
 			}
-			queue_Component.actionCount = actions.Count;
 		}
 
 		public void Delay_Action_With_Action(IAction delayedAction, IAction action, Action_Types action_Types)

@@ -5,12 +5,6 @@ using UnityEngine;
 
 public class DistanceCheck : MonoBehaviour
 {
-	//public int minimumCount;
-	//public int maximumCount;
-
-	//public Transform target;
-	//public Transform unit;
-	
 	private Pathfinding pathfinding;
 	private SquareGrid grid;
 	public List<Node> withinRangeNodes = new List<Node>();
@@ -18,7 +12,7 @@ public class DistanceCheck : MonoBehaviour
 
 	public delegate void AddNeighbour(Node node);
 	public AddNeighbour OnAddNeighbour;
-
+	public Node closestNode;
 	private void Awake()
 	{
 		if (grid == null)
@@ -34,23 +28,10 @@ public class DistanceCheck : MonoBehaviour
 	{
 		withinRangeNodes.Clear();
 		withinRangeNodes = grid.NodeGrid.GetWithinRange(targetNode, minimumRange, maximumRange);
-		closestNode = ClosestNode(grid.NodeGrid.NodeFromWorldPoint(unit.position), targetNode);
+		closestNode = ClosestNode(withinRangeNodes, grid.NodeGrid.NodeFromWorldPoint(unit.position), targetNode);
 	}
-	/*
-	[Button("Search Closest")]
-	public void SearchClosest()
-	{
-		closestNode = ClosestNode(grid.NodeGrid.NodeFromWorldPoint(unit.position), grid.NodeGrid.NodeFromWorldPoint(target.position));
-	}
-	[Button("Search")]
-	public void Search()
-	{
-		withinRangeNodes.Clear();
-		withinRangeNodes = grid.NodeGrid.GetWithinRange(grid.NodeGrid.NodeFromWorldPoint(target.position), minimumCount, maximumCount);
-	}
-	*/
-	public Node closestNode;
-	public Node ClosestNode(Node seeker, Node target)
+
+	public Node ClosestNode(List<Node> withinRangeNodes,Node seeker, Node target)
 	{
 		Node closest = null;
 		int closestDistance = 0;
@@ -93,7 +74,7 @@ public class DistanceCheck : MonoBehaviour
 			foreach (Node n in withinRangeNodes)
 			{
 				Gizmos.color = n == closestNode ? Color.blue : Color.red;
-				Gizmos.DrawWireCube(n.worldPosition, Vector3.one * (grid.NodeDiameter - .3f));
+				Gizmos.DrawWireCube(n.WorldPosition, Vector3.one * (grid.NodeDiameter - .3f));
 			}
 
 		}

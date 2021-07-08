@@ -34,7 +34,7 @@ public class MoveAction : IAction
 			}
 		}
 		if (notReady) return;
-		unit.Move(selectedNode.worldPosition, stoppingDistance, ReachedDestination);
+		unit.Move(selectedNode.WorldPosition, stoppingDistance, ReachedDestination);
 	}
 
 	public void ReachedDestination(bool reached)

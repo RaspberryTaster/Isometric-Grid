@@ -21,17 +21,16 @@ public class UnitMovementInput : MonoBehaviour
 
 	private void OnEnable()
 	{
-		playerInput.OnHitRaycast += PlayerInput_OnHitRaycast;
+		playerInput.OnClick += PlayerInput_OnHitRaycast;
 	}
 
 	public void OnDisable()
 	{
-		playerInput.OnHitRaycast -= PlayerInput_OnHitRaycast;
+		playerInput.OnClick -= PlayerInput_OnHitRaycast;
 	}
 
 	private void PlayerInput_OnHitRaycast(RaycastHit hit)
 	{
-		//selectedNode = null;
 		unit.SetDistanceNodes();
 
 		Unit targetUnit = hit.collider.GetComponent<Unit>();
@@ -48,7 +47,7 @@ public class UnitMovementInput : MonoBehaviour
 		Action_Types action_Types;
 		if (targetUnit != null && targetUnitNode != null && unit.WithinRangeNodes.Contains(targetUnitNode))
 		{
-			SurroundingNodes.SetUp(unit.transform, targetUnitNode, controlledUnitCombatComponent.minAttackRange, controlledUnitCombatComponent.maxAttackRange);
+			SurroundingNodes.SetUp(unit.transform, targetUnitNode, controlledUnitCombatComponent.attackRange.x, controlledUnitCombatComponent.attackRange.y);
 			selectedNode = SurroundingNodes.closestNode;
 			MoveAction moveAction = new MoveAction(unit, stateMachine, selectedNode, 0);
 			action = new AttackAction(controlledUnitCombatComponent, stateMachine, targtCombatComponent, moveAction);
@@ -60,7 +59,7 @@ public class UnitMovementInput : MonoBehaviour
 			action = new MoveAction(unit, stateMachine, selectedNode, stoppingDistance);
 			action_Types = Action_Types.WALK;
 		}
-		if (selectedNode == null || !selectedNode.walkable || action == null || !unit.MovementNodes.Contains(selectedNode)) return;
+		if (selectedNode == null || !selectedNode.Walkable || action == null || !unit.MovementNodes.Contains(selectedNode)) return;
 		stateMachine.Dequeue_All_Before_Adding_Action(action, action_Types);
 	}
 
@@ -69,7 +68,7 @@ public class UnitMovementInput : MonoBehaviour
 		if (selectedNode != null)
 		{
 			Gizmos.color = Color.green;
-			Gizmos.DrawCube(selectedNode.worldPosition, Vector3.one);
+			Gizmos.DrawCube(selectedNode.WorldPosition, Vector3.one);
 		}
 
 	}

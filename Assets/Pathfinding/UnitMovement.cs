@@ -71,7 +71,7 @@ public class UnitMovement : MonoBehaviour
 				Node next = neighbours[i];
 				int distance = Pathfinding.GetDistance(center, next);
 				bool notWithinDistance = distance > MoveDistance;
-				if (reached.Contains(next) || notWithinDistance || !next.walkable) continue;
+				if (reached.Contains(next) || notWithinDistance || !next.Walkable) continue;
 				frontier.Enqueue(next);
 				reached.Add(next);
 			}
@@ -85,7 +85,7 @@ public class UnitMovement : MonoBehaviour
 		List<Node> value = new List<Node>();
 		foreach(Node n in targetNodes)
 		{
-			List<Node> rangeNodes = grid.NodeGrid.GetWithinRange(n, combatComponent.minAttackRange, combatComponent.maxAttackRange);
+			List<Node> rangeNodes = grid.NodeGrid.GetWithinRange(n, combatComponent.attackRange.x, combatComponent.attackRange.y);
 			for(int i = 0; i < rangeNodes.Count; i++)
 			{
 				if (value.Contains(rangeNodes[i])) continue;
@@ -108,12 +108,12 @@ public class UnitMovement : MonoBehaviour
 		foreach (Node n in MovementNodes)
 		{
 			Gizmos.color = Color.yellow;
-			Gizmos.DrawWireCube(n.worldPosition, Vector3.one * (grid.NodeDiameter - .3f));
+			Gizmos.DrawWireCube(n.WorldPosition, Vector3.one * (grid.NodeDiameter - .3f));
 		}
 		foreach (Node n in WithinRangeNodes)
 		{
 			Gizmos.color = Color.magenta;
-			Gizmos.DrawWireCube(n.worldPosition, Vector3.one * (grid.NodeDiameter - .4f));
+			Gizmos.DrawWireCube(n.WorldPosition, Vector3.one * (grid.NodeDiameter - .4f));
 		}
 	}
 }

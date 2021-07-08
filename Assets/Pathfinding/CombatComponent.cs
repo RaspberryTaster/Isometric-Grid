@@ -2,17 +2,24 @@ using UnityEngine;
 
 public class CombatComponent : MonoBehaviour
 {
-	public int health;
-	public int damage;
-	public int minAttackRange, maxAttackRange;
-	public void Attack(CombatComponent target)
+	public int Health = 20;
+	public int Attack = 3;
+	public int Skill = 2;
+	public int Speed = 5;
+	public int Luck = 10;
+	public int Defence = 4;
+	public int Resistance = 0;
+	public int Movement = 4;
+
+	public Vector2Int attackRange = new Vector2Int(1,1);
+	public void AttackOpponent(CombatComponent target)
 	{
 		Debug.Log($"{gameObject.name} attacked {target.gameObject.name}!");
-		target.Hit(damage);
+		target.Hit(Attack);
 	}
 
 	public void Hit(int damage)
 	{
-		health -= damage;
+		Health -= damage;
 	}
 }

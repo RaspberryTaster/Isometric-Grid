@@ -10,7 +10,6 @@ namespace Raspberry.Movement
 		public IQueue current_Strategy;
 		List<IAction> actions = new List<IAction>();
 		[SerializeField] List<Action_Types> actionNames = new List<Action_Types>();
-		public int actionCount;
 
 		void Start()
 		{

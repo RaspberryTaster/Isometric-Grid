@@ -28,8 +28,8 @@ namespace Assets
 					if (x == 0 && y == 0)
 						continue;
 
-					int checkX = node.gridPositionX + x;
-					int checkY = node.gridPositionY + y;
+					int checkX = node.GridPosition.x + x;
+					int checkY = node.GridPosition.y + y;
 
 					if (checkX >= 0 && checkX < GridSize.x && checkY >= 0 && checkY < GridSize.y)
 					{
@@ -52,8 +52,8 @@ namespace Assets
 					if (x == 0 && y == 0)
 						continue;
 
-					int checkX = node.gridPositionX + x;
-					int checkY = node.gridPositionY + y;
+					int checkX = node.GridPosition.x + x;
+					int checkY = node.GridPosition.y + y;
 
 					if (checkX >= 0 && checkX < GridSize.x && checkY >= 0 && checkY < GridSize.y)
 					{
@@ -76,8 +76,8 @@ namespace Assets
 					if (x == 0 && y == 0)
 						continue;
 
-					int checkX = node.gridPositionX + x;
-					int checkY = node.gridPositionY + y;
+					int checkX = node.GridPosition.x + x;
+					int checkY = node.GridPosition.y + y;
 
 					if (checkX >= 0 && checkX < GridSize.x && checkY >= 0 && checkY < GridSize.y)
 					{
@@ -110,8 +110,8 @@ namespace Assets
 					if (x == -1 && y == 1)
 						continue;
 
-					int checkX = center.gridPositionX + x;
-					int checkY = center.gridPositionY + y;
+					int checkX = center.GridPosition.x + x;
+					int checkY = center.GridPosition.y+ y;
 
 					if (checkX >= 0 && checkX < GridSize.x && checkY >= 0 && checkY < GridSize.y)
 					{
@@ -162,7 +162,7 @@ namespace Assets
 			return withinRangeNodes;
 		}
 
-
+		private float buffer = 0;
 		public Node NodeFromWorldPoint(Vector3 worldPosition)
 		{
 			float percentX = (worldPosition.x + GridSize.x / 2) / GridSize.x;

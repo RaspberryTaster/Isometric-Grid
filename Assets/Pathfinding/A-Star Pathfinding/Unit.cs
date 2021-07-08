@@ -7,9 +7,7 @@ using System.Collections.Generic;
 [RequireComponent(typeof(CombatComponent))]
 public class Unit : MonoBehaviour
 {
-	private float speed = 20;
-
-	public int MoveDistance = 10;
+	private float animationSpeed = 20;
 	private Pathfinding Pathfinding;
 	private SquareGrid grid;
 	private CombatComponent combatComponent;
@@ -33,6 +31,8 @@ public class Unit : MonoBehaviour
 		}
 		
 		combatComponent = GetComponent<CombatComponent>();
+
+
 	}
 
 	private void Start()
@@ -66,6 +66,10 @@ public class Unit : MonoBehaviour
 			n.SetColor(n.DefaultNodeIndex);
 		}
 
+		if(grid.NodeGrid == null)
+		{
+			Debug.LogWarning("Node grid is null");
+		}
 		MovementNodes = PathfindDistance(grid.NodeGrid.NodeFromWorldPoint(transform.position));
 		WithinRangeNodes = PredictedRangeNodes(MovementNodes);
 		foreach (Node n in WithinRangeNodes)
@@ -95,8 +99,8 @@ public class Unit : MonoBehaviour
 			{
 				Node next = neighbours[i];
 				int distance = Pathfinding.GetDistance(center, next);
-				bool notWithinDistance = distance > MoveDistance;
-				if (reached.Contains(next) || notWithinDistance || !next.walkable) continue;
+				bool notWithinDistance = distance > combatComponent.Movement;
+				if (reached.Contains(next) || notWithinDistance || !next.Walkable) continue;
 				frontier.Enqueue(next);
 				reached.Add(next);
 			}
@@ -110,7 +114,7 @@ public class Unit : MonoBehaviour
 		List<Node> value = new List<Node>();
 		foreach (Node n in targetNodes)
 		{
-			List<Node> rangeNodes = grid.NodeGrid.GetWithinRange(n, combatComponent.minAttackRange, combatComponent.maxAttackRange);
+			List<Node> rangeNodes = grid.NodeGrid.GetWithinRange(n, combatComponent.attackRange.x, combatComponent.attackRange.y);
 			for (int i = 0; i < rangeNodes.Count; i++)
 			{
 				if (value.Contains(rangeNodes[i])) continue;
@@ -138,7 +142,7 @@ public class Unit : MonoBehaviour
 				currentWaypoint = path[targetIndex];
 			}
 
-			transform.position = Vector3.MoveTowards(transform.position, currentWaypoint, speed * Time.deltaTime);
+			transform.position = Vector3.MoveTowards(transform.position, currentWaypoint, animationSpeed * Time.deltaTime);
 			yield return null;
 
 		}
@@ -177,12 +181,12 @@ public class Unit : MonoBehaviour
 		foreach (Node n in MovementNodes)
 		{
 			Gizmos.color = Color.yellow;
-			Gizmos.DrawWireCube(n.worldPosition, Vector3.one * (grid.NodeDiameter - .3f));
+			Gizmos.DrawWireCube(n.WorldPosition, Vector3.one * (grid.NodeDiameter - .3f));
 		}
 		foreach (Node n in WithinRangeNodes)
 		{
 			Gizmos.color = Color.magenta;
-			Gizmos.DrawWireCube(n.worldPosition, Vector3.one * (grid.NodeDiameter - .4f));
+			Gizmos.DrawWireCube(n.WorldPosition, Vector3.one * (grid.NodeDiameter - .4f));
 		}
 	}
 }

@@ -35,7 +35,7 @@ public class AttackAction : IAction
 			}
 		}
 		if (notReady) return;
-		unitCombatComponent.Attack(targetUnit);
+		unitCombatComponent.AttackOpponent(targetUnit);
 		hasAttacked = true;
 	}
 

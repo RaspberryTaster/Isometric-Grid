@@ -18,13 +18,13 @@ public class NodeComponent : MonoBehaviour
 	public void Set(Node node)
 	{
 		this.node = node;
-		if(node.selected)
+		if(node.Selected)
 		{
 			renderer.material.color = selected;
 		}
 		else
 		{
-			renderer.material.color = this.node.walkable ? walkable : unwalkable;
+			renderer.material.color = this.node.Walkable ? walkable : unwalkable;
 		}
 
 	}
