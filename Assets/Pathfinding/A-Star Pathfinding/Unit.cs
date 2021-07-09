@@ -17,6 +17,10 @@ public class Unit : MonoBehaviour
 	private Action<bool> endOfPath;
 	private float yOffset;
 
+
+
+	public List<Node> MovementNodes = new List<Node>();
+	public List<Node> WithinRangeNodes = new List<Node>();
 	private void Awake()
 	{
 		yOffset = transform.position.y;
@@ -82,10 +86,6 @@ public class Unit : MonoBehaviour
 		}
 	}
 
-
-	public List<Node> MovementNodes = new List<Node>();
-	public List<Node> WithinRangeNodes = new List<Node>();
-
 	public List<Node> PathfindDistance(Node center)
 	{
 		Queue<Node> frontier = new Queue<Node>();
@@ -99,7 +99,7 @@ public class Unit : MonoBehaviour
 			{
 				Node next = neighbours[i];
 				int distance = Pathfinding.GetDistance(center, next);
-				bool notWithinDistance = distance > combatComponent.Movement;
+				bool notWithinDistance = distance > combatComponent.MovementPoints;
 				if (reached.Contains(next) || notWithinDistance || !next.Walkable) continue;
 				frontier.Enqueue(next);
 				reached.Add(next);
@@ -125,6 +125,28 @@ public class Unit : MonoBehaviour
 		return value;
 	}
 
+	public List<Node> PathfindDistance2(Node center)
+	{
+		Queue<Node> frontier = new Queue<Node>();
+		List<Node> reached = new List<Node>() { center };
+		frontier.Enqueue(center);
+		while (frontier.Count != 0)
+		{
+			Node current = frontier.Dequeue();
+			List<Node> neighbours = grid.NodeGrid.GetNeighbours(current);
+			for (int i = 0; i < neighbours.Count; i++)
+			{
+				Node next = neighbours[i];
+				int distance = Pathfinding.GetDistance(center, next);
+				bool notWithinDistance = distance > combatComponent.MovementPoints;
+				if (reached.Contains(next) || notWithinDistance || !next.Walkable) continue;
+				frontier.Enqueue(next);
+				reached.Add(next);
+			}
+		}
+
+		return reached;
+	}
 	IEnumerator FollowPath() {
 		if (path.Length == 0)
 		{

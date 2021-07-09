@@ -2439,7 +2439,7 @@ PrefabInstance:
       objectReference: {fileID: 636977230}
     - target: {fileID: 4554344138714963308, guid: 48771d7d42861474f9ab21574c31ac0e, type: 3}
       propertyPath: gizmoGrid
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5274166652221037767, guid: 48771d7d42861474f9ab21574c31ac0e, type: 3}
       propertyPath: m_RootOrder

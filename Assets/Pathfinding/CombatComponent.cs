@@ -9,7 +9,8 @@ public class CombatComponent : MonoBehaviour
 	public int Luck = 10;
 	public int Defence = 4;
 	public int Resistance = 0;
-	public int Movement = 4;
+	public int MovementPoints = 4;
+	public int MovementAnimationSpeed = 10;
 
 	public Vector2Int attackRange = new Vector2Int(1,1);
 	public void AttackOpponent(CombatComponent target)
