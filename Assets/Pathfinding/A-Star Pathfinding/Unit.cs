@@ -7,7 +7,6 @@ using System.Collections.Generic;
 [RequireComponent(typeof(CombatComponent))]
 public class Unit : MonoBehaviour
 {
-	private float animationSpeed = 20;
 	[SerializeField] private Pathfinding Pathfinding;
 	[SerializeField] private SquareGrid grid;
 	[SerializeField] private CombatComponent combatComponent;
@@ -21,7 +20,8 @@ public class Unit : MonoBehaviour
 
 	public List<Node> MovementNodes = new List<Node>();
 	public List<Node> WithinRangeNodes = new List<Node>();
-	public List<Node> BreadthFrontierList = new List<Node>();
+
+	public bool DrawGizmos;
 	private void Awake()
 	{
 		yOffset = transform.position.y;
@@ -126,7 +126,6 @@ public class Unit : MonoBehaviour
 				int newCost = costSoFar[current] + Pathfinding.GetDistance(current, next) + next.MovementPenalty;
 				if (newCost > combatComponent.MovementPoints)
 				{
-					Debug.Log("Its more than");
 					continue;
 				}
 
@@ -141,31 +140,12 @@ public class Unit : MonoBehaviour
 
 					cameFrom[next] = current;
 				}
-				/*
-				int distance = Pathfinding.GetDistance(center, next);
-				bool notWithinDistance = distance > combatComponent.MovementPoints;
-				if (reached.Contains(next) || notWithinDistance || !next.Walkable) continue;
-				frontier.Enqueue(next);
-				reached.Add(next);
-				*/
 			}
 		}
 
 		return reached;
 	}
-	/*
-	public List<Node> DijkstraFrontier(Node center)
-	{
-		List<Node> value = new List<Node>();
-		if (center == null) return value;
 
-		Queue<Node> frontier = new Queue<Node>();
-		frontier.Enqueue(center);
-		Dictionary<Node, int> 
-		List<Node> reached = new List<Node>() { center };
-
-	}
-	*/
 	IEnumerator FollowPath() {
 		if (path.Length == 0)
 		{
@@ -183,21 +163,10 @@ public class Unit : MonoBehaviour
 				currentWaypoint = path[targetIndex];
 			}
 
-			transform.position = Vector3.MoveTowards(transform.position, currentWaypoint, animationSpeed * Time.deltaTime);
+			transform.position = Vector3.MoveTowards(transform.position, currentWaypoint, combatComponent.MovementAnimationSpeed * Time.deltaTime);
 			yield return null;
 
 		}
-	}
-
-	public bool DrawGizmos;
-	public void OnDrawGizmos() {
-		if (!DrawGizmos) return;
-		if (path != null)
-		{
-			DrawPathGizmos();
-		}
-
-		MovementGizmos();
 	}
 
 	private void DrawPathGizmos()
@@ -217,6 +186,7 @@ public class Unit : MonoBehaviour
 			}
 		}
 	}
+
 	private void MovementGizmos()
 	{
 		
@@ -231,5 +201,16 @@ public class Unit : MonoBehaviour
 			Gizmos.color = Color.magenta;
 			Gizmos.DrawWireCube(n.WorldPosition, Vector3.one * (grid.NodeDiameter - .4f));
 		}
+	}
+
+	public void OnDrawGizmos()
+	{
+		if (!DrawGizmos) return;
+		if (path != null)
+		{
+			DrawPathGizmos();
+		}
+
+		MovementGizmos();
 	}
 }
