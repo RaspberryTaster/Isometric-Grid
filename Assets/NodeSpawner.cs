@@ -25,6 +25,8 @@ public class NodeSpawner : MonoBehaviour
 
 	public void SetRegions()
 	{
+        EnviromentMask = new LayerMask();
+
 		foreach (TerrainType region in WalkableRegions)
 		{
 			EnviromentMask.value += region.terrainMask.value;

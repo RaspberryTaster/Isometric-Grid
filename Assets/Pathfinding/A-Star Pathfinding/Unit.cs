@@ -75,9 +75,9 @@ public class Unit : MonoBehaviour
 		{
 			Debug.LogWarning("Node grid is null");
 		}
-		MovementNodes = PathfindDistance(grid.NodeGrid.NodeFromWorldPoint(transform.position));
+		MovementNodes = DijkstraFrontier(grid.NodeGrid.NodeFromWorldPoint(transform.position));
 		WithinRangeNodes = PredictedRangeNodes(MovementNodes);
-		BreadthFrontierList = DijkstraFrontier(grid.NodeGrid.NodeFromWorldPoint(transform.position));
+
 		foreach (Node n in WithinRangeNodes)
 		{
 			n.SetColor((int)TIleMode.ATTACKRANGE);
@@ -86,29 +86,6 @@ public class Unit : MonoBehaviour
 		{
 			n.SetColor((int)TIleMode.MOVEMENT);
 		}
-	}
-
-	public List<Node> PathfindDistance(Node center)
-	{
-		Queue<Node> frontier = new Queue<Node>();
-		List<Node> reached = new List<Node>() { center };
-		frontier.Enqueue(center);
-		while (frontier.Count != 0)
-		{
-			Node current = frontier.Dequeue();
-			List<Node> neighbours = grid.NodeGrid.GetNeighbours(current);
-			for (int i = 0; i < neighbours.Count; i++)
-			{
-				Node next = neighbours[i];
-				int distance = Pathfinding.GetDistance(center, next);
-				bool notWithinDistance = distance > combatComponent.MovementPoints;
-				if (reached.Contains(next) || notWithinDistance || !next.Walkable) continue;
-				frontier.Enqueue(next);
-				reached.Add(next);
-			}
-		}
-
-		return reached;
 	}
 
 	public List<Node> PredictedRangeNodes(List<Node> targetNodes)
@@ -145,6 +122,7 @@ public class Unit : MonoBehaviour
 			
 			foreach (Node next in neighbours)
 			{
+				if (!next.Walkable) continue;
 				int newCost = costSoFar[current] + Pathfinding.GetDistance(current, next) + next.MovementPenalty;
 				if (newCost > combatComponent.MovementPoints)
 				{
@@ -247,17 +225,11 @@ public class Unit : MonoBehaviour
 			Gizmos.color = Color.yellow;
 			Gizmos.DrawWireCube(n.WorldPosition, Vector3.one * (grid.NodeDiameter - .6f));
 		}
-		/*
+		
 		foreach (Node n in WithinRangeNodes)
 		{
 			Gizmos.color = Color.magenta;
 			Gizmos.DrawWireCube(n.WorldPosition, Vector3.one * (grid.NodeDiameter - .4f));
-		}
-		*/
-		foreach(Node n in BreadthFrontierList)
-		{
-			Gizmos.color = Color.green;
-			Gizmos.DrawWireCube(n.WorldPosition, Vector3.one * (grid.NodeDiameter - .1F));
 		}
 	}
 }

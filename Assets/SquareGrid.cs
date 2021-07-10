@@ -36,8 +36,6 @@ public class SquareGrid : MonoBehaviour
 	void Awake()
 	{
 		NodeSpawner = GetComponent<NodeSpawner>();
-		NodeSpawner.SetRegions();
-		RoundGridSize();
 
 		CreateGrid();
 	}
@@ -51,6 +49,9 @@ public class SquareGrid : MonoBehaviour
 	[Button]
 	void CreateGrid()
 	{
+		NodeSpawner.SetRegions();
+		RoundGridSize();
+
 		if (GridNodes != null)
 		{
 			DestroyImmediate(GridNodes);
