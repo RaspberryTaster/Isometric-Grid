@@ -8,9 +8,9 @@ using System.Collections.Generic;
 public class Unit : MonoBehaviour
 {
 	private float animationSpeed = 20;
-	private Pathfinding Pathfinding;
-	private SquareGrid grid;
-	private CombatComponent combatComponent;
+	[SerializeField] private Pathfinding Pathfinding;
+	[SerializeField] private SquareGrid grid;
+	[SerializeField] private CombatComponent combatComponent;
 	
 	private Vector3[] path;
 	private int targetIndex;
@@ -21,6 +21,7 @@ public class Unit : MonoBehaviour
 
 	public List<Node> MovementNodes = new List<Node>();
 	public List<Node> WithinRangeNodes = new List<Node>();
+	public List<Node> BreadthFrontierList = new List<Node>();
 	private void Awake()
 	{
 		yOffset = transform.position.y;
@@ -76,6 +77,7 @@ public class Unit : MonoBehaviour
 		}
 		MovementNodes = PathfindDistance(grid.NodeGrid.NodeFromWorldPoint(transform.position));
 		WithinRangeNodes = PredictedRangeNodes(MovementNodes);
+		BreadthFrontierList = DijkstraFrontier(grid.NodeGrid.NodeFromWorldPoint(transform.position));
 		foreach (Node n in WithinRangeNodes)
 		{
 			n.SetColor((int)TIleMode.ATTACKRANGE);
@@ -125,28 +127,67 @@ public class Unit : MonoBehaviour
 		return value;
 	}
 
-	public List<Node> PathfindDistance2(Node center)
+	public List<Node> DijkstraFrontier(Node center)
 	{
+		List<Node> reached = new List<Node>() { center};
 		Queue<Node> frontier = new Queue<Node>();
-		List<Node> reached = new List<Node>() { center };
 		frontier.Enqueue(center);
+		Dictionary<Node, int> costSoFar = new Dictionary<Node, int>();
+		Dictionary<Node, Node> cameFrom = new Dictionary<Node, Node>();
+
+		costSoFar[center] = 0;
+		cameFrom[center] = null;
+
 		while (frontier.Count != 0)
 		{
 			Node current = frontier.Dequeue();
 			List<Node> neighbours = grid.NodeGrid.GetNeighbours(current);
-			for (int i = 0; i < neighbours.Count; i++)
+			
+			foreach (Node next in neighbours)
 			{
-				Node next = neighbours[i];
+				int newCost = costSoFar[current] + Pathfinding.GetDistance(current, next) + next.MovementPenalty;
+				if (newCost > combatComponent.MovementPoints)
+				{
+					Debug.Log("Its more than");
+					continue;
+				}
+
+				if(!costSoFar.ContainsKey(next) || newCost < costSoFar[next])
+				{
+					costSoFar[next] = newCost;
+					frontier.Enqueue(next);
+					if(!reached.Contains(next))
+					{
+						reached.Add(next);
+					}
+
+					cameFrom[next] = current;
+				}
+				/*
 				int distance = Pathfinding.GetDistance(center, next);
 				bool notWithinDistance = distance > combatComponent.MovementPoints;
 				if (reached.Contains(next) || notWithinDistance || !next.Walkable) continue;
 				frontier.Enqueue(next);
 				reached.Add(next);
+				*/
 			}
 		}
 
 		return reached;
 	}
+	/*
+	public List<Node> DijkstraFrontier(Node center)
+	{
+		List<Node> value = new List<Node>();
+		if (center == null) return value;
+
+		Queue<Node> frontier = new Queue<Node>();
+		frontier.Enqueue(center);
+		Dictionary<Node, int> 
+		List<Node> reached = new List<Node>() { center };
+
+	}
+	*/
 	IEnumerator FollowPath() {
 		if (path.Length == 0)
 		{
@@ -200,15 +241,23 @@ public class Unit : MonoBehaviour
 	}
 	private void MovementGizmos()
 	{
+		
 		foreach (Node n in MovementNodes)
 		{
 			Gizmos.color = Color.yellow;
-			Gizmos.DrawWireCube(n.WorldPosition, Vector3.one * (grid.NodeDiameter - .3f));
+			Gizmos.DrawWireCube(n.WorldPosition, Vector3.one * (grid.NodeDiameter - .6f));
 		}
+		/*
 		foreach (Node n in WithinRangeNodes)
 		{
 			Gizmos.color = Color.magenta;
 			Gizmos.DrawWireCube(n.WorldPosition, Vector3.one * (grid.NodeDiameter - .4f));
+		}
+		*/
+		foreach(Node n in BreadthFrontierList)
+		{
+			Gizmos.color = Color.green;
+			Gizmos.DrawWireCube(n.WorldPosition, Vector3.one * (grid.NodeDiameter - .1F));
 		}
 	}
 }

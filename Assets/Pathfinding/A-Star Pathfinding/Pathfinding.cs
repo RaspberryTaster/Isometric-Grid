@@ -139,7 +139,7 @@ public class Pathfinding : MonoBehaviour
 
 		if (dstX > dstY)
 		{
-			value = diagonalCost * dstY + horizontalCost	 * (dstX - dstY);
+			value = diagonalCost * dstY + horizontalCost * (dstX - dstY);
 		}
 		else
 		{

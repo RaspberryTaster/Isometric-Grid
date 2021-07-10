@@ -16,10 +16,10 @@ public class SquareGrid : MonoBehaviour
 
 	[SerializeField] private GameObject GridNodes;
 	[SerializeField] private NodeObject NodePrefab;
-
+	[SerializeField] private NodeSpawner NodeSpawner;
 	public bool DrawGizmos;
 
-	private NodeSpawner NodeSpawner;
+
 
 
 	private void OnValidate()
