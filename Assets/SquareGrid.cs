@@ -74,6 +74,46 @@ public class SquareGrid : MonoBehaviour
 		}
 	}
 
+	public List<Node> GetNodesWithinDistance(Node center, int distance)
+	{
+
+		Queue<Node> frontier = new Queue<Node>();
+		frontier.Enqueue(center);
+		List<Node> reached = new List<Node>() { center };
+
+		while(frontier.Count != 0)
+		{
+			Node current = frontier.Dequeue();
+			List<Node> neighbours = NodeGrid.GetNeighbours(current);
+			foreach (Node next in neighbours)
+			{
+				if (GetDistance(center, next) > distance) continue;
+
+			}
+		}
+	}
+
+	public int GetDistance(Node nodeA, Node nodeB)
+	{
+		if (nodeA == null || nodeB == null) return 0;
+
+		int value;
+		int dstX = Mathf.Abs(nodeA.GridPosition.x - nodeB.GridPosition.x);
+		int dstY = Mathf.Abs(nodeA.GridPosition.y - nodeB.GridPosition.y);
+
+		if (dstX > dstY)
+		{
+			value = diagonalCost * dstY + horizontalCost
+				* (dstX - dstY);
+		}
+		else
+		{
+			value = diagonalCost * dstX + horizontalCost * (dstY - dstX);
+		}
+
+		return value;
+	}
+
 	private float gizmoBoundry = .1f;
 	private float gizmoNodeHeight = 1;
 

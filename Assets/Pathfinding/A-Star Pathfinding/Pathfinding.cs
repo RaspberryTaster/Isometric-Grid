@@ -57,11 +57,11 @@ public class Pathfinding : MonoBehaviour
 						continue;
 					}
 
-					int newMovementCostToNeighbour = currentNode.GCost + GetDistance(currentNode, neighbour) + neighbour.MovementPenalty;
+					int newMovementCostToNeighbour = currentNode.GCost + gridGetDistance(currentNode, neighbour) + neighbour.MovementPenalty;
 					if (newMovementCostToNeighbour < neighbour.GCost || !openSet.Contains(neighbour))
 					{
 						neighbour.GCost = newMovementCostToNeighbour;
-						neighbour.HCost = GetDistance(neighbour, targetNode);
+						neighbour.HCost = grid.GetDistance(neighbour, targetNode);
 						neighbour.parent = currentNode;
 
 						if (!openSet.Contains(neighbour))
@@ -113,24 +113,4 @@ public class Pathfinding : MonoBehaviour
 
 	[SerializeField] private int diagonalCost = 2;
 	[SerializeField] private int horizontalCost = 1;
-	public int GetDistance(Node nodeA, Node nodeB)
-	{
-		if (nodeA == null || nodeB == null) return 0;
-
-		int value;
-		int dstX = Mathf.Abs(nodeA.GridPosition.x - nodeB.GridPosition.x);
-		int dstY = Mathf.Abs(nodeA.GridPosition.y - nodeB.GridPosition.y);
-
-		if (dstX > dstY)
-		{
-			value = diagonalCost * dstY + horizontalCost
-				* (dstX - dstY);
-		}
-		else
-		{
-			value = diagonalCost * dstX + horizontalCost * (dstY - dstX);
-		}
-
-		return value;
-	}
 }
