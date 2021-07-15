@@ -81,8 +81,10 @@ public class UnitMovement : MonoBehaviour
 		{
 			Debug.LogWarning("Node grid is null");
 		}
-		movementNodes = DijkstraFrontier(grid.NodeGrid.NodeFromWorldPoint(transform.position));
-		WithinRangeNodes = PredictedRangeNodes(movementNodes.edgeNodes);
+
+		Node center = grid.NodeGrid.NodeFromWorldPoint(transform.position);
+		movementNodes = DijkstraFrontier(center);
+		WithinRangeNodes = grid.NodeGrid.GetWithinRange(center, combatComponent.attackRange.x, combatComponent.attackRange.y);
 
 		foreach (Node n in WithinRangeNodes)
 		{
