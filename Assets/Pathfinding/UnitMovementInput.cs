@@ -8,15 +8,15 @@ public class UnitMovementInput : MonoBehaviour
 	public DistanceCheck SurroundingNodes;
 	public Node selectedNode;
 	public SquareGrid squareGrid;
-	public Unit unit;
-	public CombatComponent controlledUnitCombatComponent;
+	public UnitMovement unit;
+	public Unit controlledUnitCombatComponent;
 	public StateMachine stateMachine;
 	PlayerInput playerInput;
 
 	void Awake()
 	{
 		playerInput = GetComponent<PlayerInput>();
-		controlledUnitCombatComponent = unit.GetComponent<CombatComponent>();
+		controlledUnitCombatComponent = unit.GetComponent<Unit>();
 	}
 
 	private void OnEnable()
@@ -33,14 +33,14 @@ public class UnitMovementInput : MonoBehaviour
 	{
 		unit.SetDistanceNodes();
 
-		Unit targetUnit = hit.collider.GetComponent<Unit>();
+		UnitMovement targetUnit = hit.collider.GetComponent<UnitMovement>();
 		Node targetUnitNode = null;
 		if (targetUnit != null)
 		{
 			targetUnitNode = squareGrid.NodeGrid.NodeFromWorldPoint(targetUnit.transform.position);
 		}
 		Node hitNode = squareGrid.NodeGrid.NodeFromWorldPoint(hit.point);
-		CombatComponent targtCombatComponent = hit.collider.GetComponent<CombatComponent>();
+		Unit targtCombatComponent = hit.collider.GetComponent<Unit>();
 
 		int stoppingDistance = 0;
 		IAction action;

@@ -21,7 +21,7 @@ public class NodeSpawner : MonoBehaviour
     RaycastHit hit;
     public RaycastHit[] hits = new RaycastHit[0];
 
-    Dictionary<int, int> walkableRegionDictionary = new Dictionary<int, int>();
+    Dictionary<int, TerrainType> walkableRegionDictionary = new Dictionary<int, TerrainType>();
 
 	public void SetRegions()
 	{
@@ -30,14 +30,14 @@ public class NodeSpawner : MonoBehaviour
 		foreach (TerrainType region in WalkableRegions)
 		{
 			EnviromentMask.value += region.terrainMask.value;
-			walkableRegionDictionary.Add((int)Mathf.Log(region.terrainMask.value, 2), region.penalty);
+			walkableRegionDictionary.Add((int)Mathf.Log(region.terrainMask.value, 2), region);
 		}
 	}
 
 	public void Spawn(int x, int y, Vector3 worldPoint, NodeObject nodePrefab, GameObject GridNodes, NodeGrid NodeGrid)
 	{
         string Name = "N/A";
-        int movementPenalty = 99;
+        TerrainType terrainType = new TerrainType();
         nodeObject = Instantiate(nodePrefab, worldPoint, Quaternion.identity);
         hits = Physics.BoxCastAll(worldPoint, nodeObject.transform.lossyScale / 2, direction, nodeObject.transform.rotation, maxDistance, EnviromentMask);
         bool walkable = false;
@@ -70,7 +70,7 @@ public class NodeSpawner : MonoBehaviour
         TIleMode tileMode;
         if(walkable)
 		{
-            walkableRegionDictionary.TryGetValue(hit.collider.gameObject.layer, out movementPenalty);
+            walkableRegionDictionary.TryGetValue(hit.collider.gameObject.layer, out terrainType);
             tileMode = TIleMode.DEFAULT;
         }
         else
@@ -79,7 +79,7 @@ public class NodeSpawner : MonoBehaviour
 		}
         
         nodeObject.transform.parent = GridNodes.transform;
-        NodeGrid.NodeArray[x, y] = new Node(walkable, worldPoint, x, y, (int)tileMode, Name, movementPenalty, nodeObject);
+        NodeGrid.NodeArray[x, y] = new Node(walkable, worldPoint, x, y, (int)tileMode, Name, terrainType.penalty, nodeObject, terrainType.animationSpeedMultiplier);
         nodeObject = null;
     }
 
@@ -106,5 +106,6 @@ public class NodeSpawner : MonoBehaviour
 public class TerrainType
 {
     public LayerMask terrainMask;
-    public int penalty;
+    public int penalty = 99;
+    public float animationSpeedMultiplier = 1;
 }

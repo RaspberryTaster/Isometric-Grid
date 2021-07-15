@@ -15,22 +15,22 @@ public class Pathfinding : MonoBehaviour
 
 	}
 
-	public void StartFindPath(Vector3 startPos, Vector3 targetPos, int stoppingDistance)
+	public void StartFindPath(Node startPos, Node targetPos, int stoppingDistance)
 	{
 		StartCoroutine(FindPath(startPos, targetPos, stoppingDistance));
 	}
 
-	IEnumerator FindPath(Vector3 startPos, Vector3 targetPos, int stoppingDistance)
+	IEnumerator FindPath(Node startPos, Node targetPos, int stoppingDistance)
 	{
 
-		Vector3[] waypoints = new Vector3[0];
+		Node[] waypoints = new Node[0];
 		bool pathSuccess = false;
 		if(grid == null)
 		{
 			Debug.LogWarning("Null grid");
 		}
-		Node startNode = grid.NodeGrid.NodeFromWorldPoint(startPos);
-		Node targetNode = grid.NodeGrid.NodeFromWorldPoint(targetPos);
+		Node startNode = startPos;
+		Node targetNode = targetPos;
 
 
 		if (startNode.Walkable && targetNode.Walkable)
@@ -57,7 +57,7 @@ public class Pathfinding : MonoBehaviour
 						continue;
 					}
 
-					int newMovementCostToNeighbour = currentNode.GCost + gridGetDistance(currentNode, neighbour) + neighbour.MovementPenalty;
+					int newMovementCostToNeighbour = currentNode.GCost + grid.GetDistance(currentNode, neighbour) + neighbour.MovementPenalty;
 					if (newMovementCostToNeighbour < neighbour.GCost || !openSet.Contains(neighbour))
 					{
 						neighbour.GCost = newMovementCostToNeighbour;
@@ -86,7 +86,7 @@ public class Pathfinding : MonoBehaviour
 
 	}
 
-	Vector3[] RetracePath(Node startNode, Node endNode, int stoppingDistance)
+	Node[] RetracePath(Node startNode, Node endNode, int stoppingDistance)
 	{
 		List<Node> path = new List<Node>();
 		Node currentNode = endNode;
@@ -96,21 +96,35 @@ public class Pathfinding : MonoBehaviour
 			currentNode = currentNode.parent;
 		}
 
-		Vector3[] waypoints = PositionPath(path, stoppingDistance);
+		Node[] waypoints = PositionPath(path, stoppingDistance);
 		Array.Reverse(waypoints);
 		return waypoints;
 	}
 
-	Vector3[] PositionPath(List<Node> path, int stoppingDistance)
+	Node[] PositionPath(List<Node> path, int stoppingDistance)
 	{
-		List<Vector3> waypoints = new List<Vector3>();
+		List<Node> waypoints = new List<Node>();
 		for (int i = stoppingDistance; i < path.Count; i++)
 		{
-			waypoints.Add(path[i].WorldPosition);
+			waypoints.Add(path[i]);
 		}
 		return waypoints.ToArray();
 	}
 
 	[SerializeField] private int diagonalCost = 2;
 	[SerializeField] private int horizontalCost = 1;
+	public int DiagonalCost
+	{
+		get
+		{
+			return diagonalCost;
+		}
+	}
+	public int HorizontalCost
+	{
+		get
+		{
+			return horizontalCost;
+		}
+	}
 }

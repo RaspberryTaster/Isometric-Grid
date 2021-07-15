@@ -1,0 +1,10 @@
+
+=== Thu Jul 15 00:49:07 2021
+
+Packages were changed.
+Update Mode: resetToDefaultDependencies
+
+The following packages were added:
+  com.unity.visualscripting@1.6.1
+The following packages were removed:
+  com.unity.render-pipelines.universal@11.0.0

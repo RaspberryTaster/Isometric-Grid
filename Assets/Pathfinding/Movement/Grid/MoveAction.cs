@@ -3,14 +3,14 @@ using Raspberry.Movement.Actions;
 
 public class MoveAction : IAction
 {
-	private Unit unit;
+	private UnitMovement unit;
 	private StateMachine queueComponent;
 	private Node selectedNode;
 	private int stoppingDistance;
 	public IAction[] preActions;
 	private bool reachedDestination = false;
 
-	public MoveAction(Unit unit, StateMachine queueComponent, Node selectedNode, int stoppingDistance, IAction[] preActions = null)
+	public MoveAction(UnitMovement unit, StateMachine queueComponent, Node selectedNode, int stoppingDistance, IAction[] preActions = null)
 	{
 		this.unit = unit;
 		this.queueComponent = queueComponent;
@@ -34,7 +34,7 @@ public class MoveAction : IAction
 			}
 		}
 		if (notReady) return;
-		unit.Move(selectedNode.WorldPosition, stoppingDistance, ReachedDestination);
+		unit.Move(selectedNode, stoppingDistance, ReachedDestination);
 	}
 
 	public void ReachedDestination(bool reached)

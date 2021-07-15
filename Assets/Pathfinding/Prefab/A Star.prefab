@@ -72,14 +72,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2297a93da8f9ab54abf5d7ee53fef54e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridWorldSize: {x: 30, y: 30}
+  gridSize: {x: 30, y: 30}
   NodeRadius: 0.5
-  DrawGizmos: 0
+  pathfidning: {fileID: 846597179353826897}
   GridNodes: {fileID: 0}
   NodePrefab: {fileID: 8390435362039047307, guid: 5ec26ed04487f794fba124da11d58815, type: 3}
   NodeSpawner: {fileID: 846597179353826900}
-  gizmoBoundry: 0.1
-  gizmoNodeHeight: 1
+  DrawGizmos: 0
 --- !u!114 &846597179353826900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92,8 +91,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4212642d4776b6547aa3dd9c916d29c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxDistance: 10
-  layerMask:
+  EnviromentMask:
     serializedVersion: 2
-    m_Bits: 320
+    m_Bits: 0
+  WalkableRegions:
+  - terrainMask:
+      serializedVersion: 2
+      m_Bits: 256
+    penalty: 0
+  - terrainMask:
+      serializedVersion: 2
+      m_Bits: 64
+    penalty: 0
+  - terrainMask:
+      serializedVersion: 2
+      m_Bits: 512
+    penalty: 1
   positionOffset: {x: 0, y: 0.02, z: 0}

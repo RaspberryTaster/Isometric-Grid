@@ -23,7 +23,9 @@ public class Node : IHeapItem<Node>
 	public Node parent;
 	public NodeObject nodeObject;
 	int heapIndex;
-	public Node(bool _walkable, Vector3 _worldPos, int _gridX, int _gridY,int  DefaultNodeIndex, string name, int penalty, NodeObject nodeObject = null)
+
+	public float movementAnimationMultiplier;
+	public Node(bool _walkable, Vector3 _worldPos, int _gridX, int _gridY, int DefaultNodeIndex, string name, int penalty, NodeObject nodeObject = null, float movementAnimationMultiplier = 1)
 	{
 		Walkable = _walkable;
 		WorldPosition = _worldPos;
@@ -34,6 +36,7 @@ public class Node : IHeapItem<Node>
 		SetColor(DefaultNodeIndex);
 		Name = name;
 		MovementPenalty = penalty;
+		this.movementAnimationMultiplier = movementAnimationMultiplier;
 	}
 
 	public int fCost

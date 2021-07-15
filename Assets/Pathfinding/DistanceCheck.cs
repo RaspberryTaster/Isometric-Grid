@@ -39,11 +39,11 @@ public class DistanceCheck : MonoBehaviour
 		{
 			if(closest == null)
 			{
-				SetClosest(withinRangeNodes[i], pathfinding.GetDistance(withinRangeNodes[i], seeker));
+				SetClosest(withinRangeNodes[i], grid.GetDistance(withinRangeNodes[i], seeker));
 			}
 			else
 			{
-				int distanceToNode = pathfinding.GetDistance(withinRangeNodes[i], seeker);
+				int distanceToNode = grid.GetDistance(withinRangeNodes[i], seeker);
 				if (closestDistance > distanceToNode)
 				{
 					SetClosest(withinRangeNodes[i], distanceToNode);
@@ -56,8 +56,8 @@ public class DistanceCheck : MonoBehaviour
 		{
 			if(closestDistance == distance)
 			{
-				int distanceFromClosest = pathfinding.GetDistance(closest, target);
-				int distanceFromNewest = pathfinding.GetDistance(node, target);
+				int distanceFromClosest = grid.GetDistance(closest, target);
+				int distanceFromNewest = grid.GetDistance(node, target);
 				if (distanceFromClosest > distanceFromNewest) return;
 			}
 			closest = node;

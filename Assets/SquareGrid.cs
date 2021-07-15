@@ -13,7 +13,7 @@ public class SquareGrid : MonoBehaviour
 
 	public float NodeDiameter => NodeRadius * 2;
 	public NodeGrid NodeGrid;
-
+	[SerializeField] private Pathfinding pathfidning;
 	[SerializeField] private GameObject GridNodes;
 	[SerializeField] private NodeObject NodePrefab;
 	[SerializeField] private NodeSpawner NodeSpawner;
@@ -87,10 +87,13 @@ public class SquareGrid : MonoBehaviour
 			List<Node> neighbours = NodeGrid.GetNeighbours(current);
 			foreach (Node next in neighbours)
 			{
-				if (GetDistance(center, next) > distance) continue;
-
+				if (GetDistance(center, next) > distance !& reached.Contains(next)) continue;
+				frontier.Enqueue(next);
+				reached.Add(next);
 			}
 		}
+
+		return reached;
 	}
 
 	public int GetDistance(Node nodeA, Node nodeB)
@@ -103,12 +106,12 @@ public class SquareGrid : MonoBehaviour
 
 		if (dstX > dstY)
 		{
-			value = diagonalCost * dstY + horizontalCost
+			value = pathfidning.DiagonalCost * dstY + pathfidning.HorizontalCost
 				* (dstX - dstY);
 		}
 		else
 		{
-			value = diagonalCost * dstX + horizontalCost * (dstY - dstX);
+			value = pathfidning.DiagonalCost * dstX + pathfidning.HorizontalCost * (dstY - dstX);
 		}
 
 		return value;

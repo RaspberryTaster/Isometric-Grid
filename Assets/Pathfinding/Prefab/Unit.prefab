@@ -144,9 +144,2481 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55aaea15fdaa70f4d888952b992b3553, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveDistance: 10
-  MovementNodes: []
-  WithinRangeNodes: []
+  Pathfinding: {fileID: 0}
+  grid: {fileID: 0}
+  combatComponent: {fileID: 2825615464243368551}
+  MovementNodes:
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 3.5, y: 0.02, z: 0.5}
+    GridPosition: {x: 18, y: 15}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 2.5, y: 0.02, z: -0.5}
+    GridPosition: {x: 17, y: 14}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 2.5, y: 0.02, z: 0.5}
+    GridPosition: {x: 17, y: 15}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 2.5, y: 0.02, z: 1.5}
+    GridPosition: {x: 17, y: 16}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 3.5, y: 0.02, z: -0.5}
+    GridPosition: {x: 18, y: 14}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 3.5, y: 0.02, z: 1.5}
+    GridPosition: {x: 18, y: 16}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 4.5, y: 0.02, z: -0.5}
+    GridPosition: {x: 19, y: 14}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 4.5, y: 0.02, z: 0.5}
+    GridPosition: {x: 19, y: 15}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 4.5, y: 0.02, z: 1.5}
+    GridPosition: {x: 19, y: 16}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 1.5, y: 0.02, z: -1.5}
+    GridPosition: {x: 16, y: 13}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 1.5, y: 0.02, z: -0.5}
+    GridPosition: {x: 16, y: 14}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 1.5, y: 0.02, z: 0.5}
+    GridPosition: {x: 16, y: 15}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 2.5, y: 0.02, z: -1.5}
+    GridPosition: {x: 17, y: 13}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 3.5, y: 0.02, z: -1.5}
+    GridPosition: {x: 18, y: 13}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 1.5, y: 0.02, z: 1.5}
+    GridPosition: {x: 16, y: 16}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 1.5, y: 0.02, z: 2.5}
+    GridPosition: {x: 16, y: 17}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 2.5, y: 0.02, z: 2.5}
+    GridPosition: {x: 17, y: 17}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 3.5, y: 0.02, z: 2.5}
+    GridPosition: {x: 18, y: 17}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 4.5, y: 0.02, z: -1.5}
+    GridPosition: {x: 19, y: 13}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 4.5, y: 0.02, z: 2.5}
+    GridPosition: {x: 19, y: 17}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 5.5, y: 0.02, z: -1.5}
+    GridPosition: {x: 20, y: 13}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 5.5, y: 0.02, z: -0.5}
+    GridPosition: {x: 20, y: 14}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 5.5, y: 0.02, z: 0.5}
+    GridPosition: {x: 20, y: 15}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 5.5, y: 0.02, z: 1.5}
+    GridPosition: {x: 20, y: 16}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 5.5, y: 0.02, z: 2.5}
+    GridPosition: {x: 20, y: 17}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 0.5, y: 0.02, z: -2.5}
+    GridPosition: {x: 15, y: 12}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 0.5, y: 0.02, z: -1.5}
+    GridPosition: {x: 15, y: 13}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 0.5, y: 0.02, z: -0.5}
+    GridPosition: {x: 15, y: 14}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 1.5, y: 0.02, z: -2.5}
+    GridPosition: {x: 16, y: 12}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 2.5, y: 0.02, z: -2.5}
+    GridPosition: {x: 17, y: 12}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 0.5, y: 0.02, z: 0.5}
+    GridPosition: {x: 15, y: 15}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 0.5, y: 0.02, z: 1.5}
+    GridPosition: {x: 15, y: 16}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 3.5, y: 0.02, z: -2.5}
+    GridPosition: {x: 18, y: 12}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 4.5, y: 0.02, z: -2.5}
+    GridPosition: {x: 19, y: 12}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 0.5, y: 0.02, z: 2.5}
+    GridPosition: {x: 15, y: 17}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 0.5, y: 0.02, z: 3.5}
+    GridPosition: {x: 15, y: 18}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 1.5, y: 0.02, z: 3.5}
+    GridPosition: {x: 16, y: 18}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 2.5, y: 0.02, z: 3.5}
+    GridPosition: {x: 17, y: 18}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 3.5, y: 0.02, z: 3.5}
+    GridPosition: {x: 18, y: 18}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 4.5, y: 0.02, z: 3.5}
+    GridPosition: {x: 19, y: 18}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 5.5, y: 0.02, z: -2.5}
+    GridPosition: {x: 20, y: 12}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 5.5, y: 0.02, z: 3.5}
+    GridPosition: {x: 20, y: 18}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 6.5, y: 0.02, z: -2.5}
+    GridPosition: {x: 21, y: 12}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 6.5, y: 0.02, z: -1.5}
+    GridPosition: {x: 21, y: 13}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 6.5, y: 0.02, z: -0.5}
+    GridPosition: {x: 21, y: 14}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 6.5, y: 0.02, z: 0.5}
+    GridPosition: {x: 21, y: 15}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 6.5, y: 0.02, z: 1.5}
+    GridPosition: {x: 21, y: 16}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 6.5, y: 0.02, z: 2.5}
+    GridPosition: {x: 21, y: 17}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 6.5, y: 0.02, z: 3.5}
+    GridPosition: {x: 21, y: 18}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: -0.5, y: 0.02, z: -2.5}
+    GridPosition: {x: 14, y: 12}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: -0.5, y: 0.02, z: -1.5}
+    GridPosition: {x: 14, y: 13}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: -0.5, y: 0.02, z: -0.5}
+    GridPosition: {x: 14, y: 14}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: -0.5, y: 0.02, z: 0.5}
+    GridPosition: {x: 14, y: 15}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: -0.5, y: 0.02, z: 1.5}
+    GridPosition: {x: 14, y: 16}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: -0.5, y: 0.02, z: 2.5}
+    GridPosition: {x: 14, y: 17}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 5.5, y: 0.02, z: -3.5}
+    GridPosition: {x: 20, y: 11}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: -0.5, y: 0.02, z: 3.5}
+    GridPosition: {x: 14, y: 18}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: -0.5, y: 0.02, z: 4.5}
+    GridPosition: {x: 14, y: 19}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 0.5, y: 0.02, z: 4.5}
+    GridPosition: {x: 15, y: 19}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 6.5, y: 0.02, z: -3.5}
+    GridPosition: {x: 21, y: 11}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 7.5, y: 0.02, z: -3.5}
+    GridPosition: {x: 22, y: 11}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 7.5, y: 0.02, z: -2.5}
+    GridPosition: {x: 22, y: 12}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 7.5, y: 0.02, z: -1.5}
+    GridPosition: {x: 22, y: 13}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 7.5, y: 0.02, z: -0.5}
+    GridPosition: {x: 22, y: 14}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 7.5, y: 0.02, z: 0.5}
+    GridPosition: {x: 22, y: 15}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 7.5, y: 0.02, z: 1.5}
+    GridPosition: {x: 22, y: 16}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 7.5, y: 0.02, z: 2.5}
+    GridPosition: {x: 22, y: 17}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 7.5, y: 0.02, z: 3.5}
+    GridPosition: {x: 22, y: 18}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: -1.5, y: 0.02, z: -2.5}
+    GridPosition: {x: 13, y: 12}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: -1.5, y: 0.02, z: -1.5}
+    GridPosition: {x: 13, y: 13}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: -1.5, y: 0.02, z: -0.5}
+    GridPosition: {x: 13, y: 14}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: -1.5, y: 0.02, z: 0.5}
+    GridPosition: {x: 13, y: 15}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: -1.5, y: 0.02, z: 1.5}
+    GridPosition: {x: 13, y: 16}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: -1.5, y: 0.02, z: 2.5}
+    GridPosition: {x: 13, y: 17}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: -1.5, y: 0.02, z: 3.5}
+    GridPosition: {x: 13, y: 18}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 5.5, y: 0.02, z: -4.5}
+    GridPosition: {x: 20, y: 10}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 6.5, y: 0.02, z: -4.5}
+    GridPosition: {x: 21, y: 10}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 0.5, y: 0.02, z: 5.5}
+    GridPosition: {x: 15, y: 20}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 8.5, y: 0.02, z: -2.5}
+    GridPosition: {x: 23, y: 12}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 8.5, y: 0.02, z: -1.5}
+    GridPosition: {x: 23, y: 13}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 8.5, y: 0.02, z: -0.5}
+    GridPosition: {x: 23, y: 14}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 8.5, y: 0.02, z: 0.5}
+    GridPosition: {x: 23, y: 15}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 8.5, y: 0.02, z: 1.5}
+    GridPosition: {x: 23, y: 16}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 8.5, y: 0.02, z: 2.5}
+    GridPosition: {x: 23, y: 17}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 8.5, y: 0.02, z: 3.5}
+    GridPosition: {x: 23, y: 18}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: -2.5, y: 0.02, z: -1.5}
+    GridPosition: {x: 12, y: 13}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: -2.5, y: 0.02, z: -0.5}
+    GridPosition: {x: 12, y: 14}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: -2.5, y: 0.02, z: 0.5}
+    GridPosition: {x: 12, y: 15}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: -2.5, y: 0.02, z: 1.5}
+    GridPosition: {x: 12, y: 16}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: -2.5, y: 0.02, z: 2.5}
+    GridPosition: {x: 12, y: 17}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 5.5, y: 0.02, z: -5.5}
+    GridPosition: {x: 20, y: 9}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 9.5, y: 0.02, z: -1.5}
+    GridPosition: {x: 24, y: 13}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 9.5, y: 0.02, z: -0.5}
+    GridPosition: {x: 24, y: 14}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 9.5, y: 0.02, z: 0.5}
+    GridPosition: {x: 24, y: 15}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 9.5, y: 0.02, z: 1.5}
+    GridPosition: {x: 24, y: 16}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 9.5, y: 0.02, z: 2.5}
+    GridPosition: {x: 24, y: 17}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: -3.5, y: 0.02, z: -0.5}
+    GridPosition: {x: 11, y: 14}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: -3.5, y: 0.02, z: 0.5}
+    GridPosition: {x: 11, y: 15}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: -3.5, y: 0.02, z: 1.5}
+    GridPosition: {x: 11, y: 16}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 10.5, y: 0.02, z: -0.5}
+    GridPosition: {x: 25, y: 14}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 10.5, y: 0.02, z: 0.5}
+    GridPosition: {x: 25, y: 15}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 10.5, y: 0.02, z: 1.5}
+    GridPosition: {x: 25, y: 16}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: -4.5, y: 0.02, z: 0.5}
+    GridPosition: {x: 10, y: 15}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 11.5, y: 0.02, z: 0.5}
+    GridPosition: {x: 26, y: 15}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  WithinRangeNodes:
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 2.5, y: 0.02, z: 0.5}
+    GridPosition: {x: 17, y: 15}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 3.5, y: 0.02, z: -0.5}
+    GridPosition: {x: 18, y: 14}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 3.5, y: 0.02, z: 1.5}
+    GridPosition: {x: 18, y: 16}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 4.5, y: 0.02, z: 0.5}
+    GridPosition: {x: 19, y: 15}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 1.5, y: 0.02, z: -0.5}
+    GridPosition: {x: 16, y: 14}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 2.5, y: 0.02, z: -1.5}
+    GridPosition: {x: 17, y: 13}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 1.5, y: 0.02, z: 0.5}
+    GridPosition: {x: 16, y: 15}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 2.5, y: 0.02, z: -0.5}
+    GridPosition: {x: 17, y: 14}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 2.5, y: 0.02, z: 1.5}
+    GridPosition: {x: 17, y: 16}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 3.5, y: 0.02, z: 0.5}
+    GridPosition: {x: 18, y: 15}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 1.5, y: 0.02, z: 1.5}
+    GridPosition: {x: 16, y: 16}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 2.5, y: 0.02, z: 2.5}
+    GridPosition: {x: 17, y: 17}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 3.5, y: 0.02, z: -1.5}
+    GridPosition: {x: 18, y: 13}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 4.5, y: 0.02, z: -0.5}
+    GridPosition: {x: 19, y: 14}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 3.5, y: 0.02, z: 2.5}
+    GridPosition: {x: 18, y: 17}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 4.5, y: 0.02, z: 1.5}
+    GridPosition: {x: 19, y: 16}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 4.5, y: 0.02, z: -1.5}
+    GridPosition: {x: 19, y: 13}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 5.5, y: 0.02, z: -0.5}
+    GridPosition: {x: 20, y: 14}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 5.5, y: 0.02, z: 0.5}
+    GridPosition: {x: 20, y: 15}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 4.5, y: 0.02, z: 2.5}
+    GridPosition: {x: 19, y: 17}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 5.5, y: 0.02, z: 1.5}
+    GridPosition: {x: 20, y: 16}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 0.5, y: 0.02, z: -1.5}
+    GridPosition: {x: 15, y: 13}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 1.5, y: 0.02, z: -2.5}
+    GridPosition: {x: 16, y: 12}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 0.5, y: 0.02, z: -0.5}
+    GridPosition: {x: 15, y: 14}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 1.5, y: 0.02, z: -1.5}
+    GridPosition: {x: 16, y: 13}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 0.5, y: 0.02, z: 0.5}
+    GridPosition: {x: 15, y: 15}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 2.5, y: 0.02, z: -2.5}
+    GridPosition: {x: 17, y: 12}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 3.5, y: 0.02, z: -2.5}
+    GridPosition: {x: 18, y: 12}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 0.5, y: 0.02, z: 1.5}
+    GridPosition: {x: 15, y: 16}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 1.5, y: 0.02, z: 2.5}
+    GridPosition: {x: 16, y: 17}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 0.5, y: 0.02, z: 2.5}
+    GridPosition: {x: 15, y: 17}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 1.5, y: 0.02, z: 3.5}
+    GridPosition: {x: 16, y: 18}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 2.5, y: 0.02, z: 3.5}
+    GridPosition: {x: 17, y: 18}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 3.5, y: 0.02, z: 3.5}
+    GridPosition: {x: 18, y: 18}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 4.5, y: 0.02, z: -2.5}
+    GridPosition: {x: 19, y: 12}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 5.5, y: 0.02, z: -1.5}
+    GridPosition: {x: 20, y: 13}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 4.5, y: 0.02, z: 3.5}
+    GridPosition: {x: 19, y: 18}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 5.5, y: 0.02, z: 2.5}
+    GridPosition: {x: 20, y: 17}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 5.5, y: 0.02, z: -2.5}
+    GridPosition: {x: 20, y: 12}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 6.5, y: 0.02, z: -1.5}
+    GridPosition: {x: 21, y: 13}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 6.5, y: 0.02, z: -0.5}
+    GridPosition: {x: 21, y: 14}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 6.5, y: 0.02, z: 0.5}
+    GridPosition: {x: 21, y: 15}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 6.5, y: 0.02, z: 1.5}
+    GridPosition: {x: 21, y: 16}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 5.5, y: 0.02, z: 3.5}
+    GridPosition: {x: 20, y: 18}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 6.5, y: 0.02, z: 2.5}
+    GridPosition: {x: 21, y: 17}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: -0.5, y: 0.02, z: -2.5}
+    GridPosition: {x: 14, y: 12}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Building A
+    DefaultNodeIndex: 1
+    Selected: 0
+    Walkable: 0
+    WorldPosition: {x: 0.5, y: 3.02, z: -3.5}
+    GridPosition: {x: 15, y: 11}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 99
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: -0.5, y: 0.02, z: -1.5}
+    GridPosition: {x: 14, y: 13}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 0.5, y: 0.02, z: -2.5}
+    GridPosition: {x: 15, y: 12}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: -0.5, y: 0.02, z: -0.5}
+    GridPosition: {x: 14, y: 14}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Building A
+    DefaultNodeIndex: 1
+    Selected: 0
+    Walkable: 0
+    WorldPosition: {x: 1.5, y: 3.02, z: -3.5}
+    GridPosition: {x: 16, y: 11}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 99
+    nodeObject: {fileID: 0}
+  - Name: Building A
+    DefaultNodeIndex: 1
+    Selected: 0
+    Walkable: 0
+    WorldPosition: {x: 2.5, y: 3.02, z: -3.5}
+    GridPosition: {x: 17, y: 11}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 99
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: -0.5, y: 0.02, z: 0.5}
+    GridPosition: {x: 14, y: 15}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: -0.5, y: 0.02, z: 1.5}
+    GridPosition: {x: 14, y: 16}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Building A
+    DefaultNodeIndex: 1
+    Selected: 0
+    Walkable: 0
+    WorldPosition: {x: 3.5, y: 3.02, z: -3.5}
+    GridPosition: {x: 18, y: 11}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 99
+    nodeObject: {fileID: 0}
+  - Name: Building A
+    DefaultNodeIndex: 1
+    Selected: 0
+    Walkable: 0
+    WorldPosition: {x: 4.5, y: 3.02, z: -3.5}
+    GridPosition: {x: 19, y: 11}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 99
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: -0.5, y: 0.02, z: 2.5}
+    GridPosition: {x: 14, y: 17}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 0.5, y: 0.02, z: 3.5}
+    GridPosition: {x: 15, y: 18}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: -0.5, y: 0.02, z: 3.5}
+    GridPosition: {x: 14, y: 18}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 0.5, y: 0.02, z: 4.5}
+    GridPosition: {x: 15, y: 19}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Forest
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 1.5, y: 0.12000038, z: 4.5}
+    GridPosition: {x: 16, y: 19}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 100
+    nodeObject: {fileID: 0}
+  - Name: Forest
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 2.5, y: 0.12000038, z: 4.5}
+    GridPosition: {x: 17, y: 19}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 100
+    nodeObject: {fileID: 0}
+  - Name: Forest
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 3.5, y: 0.12000038, z: 4.5}
+    GridPosition: {x: 18, y: 19}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 100
+    nodeObject: {fileID: 0}
+  - Name: Forest
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 4.5, y: 0.12000038, z: 4.5}
+    GridPosition: {x: 19, y: 19}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 100
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 5.5, y: 0.02, z: -3.5}
+    GridPosition: {x: 20, y: 11}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 6.5, y: 0.02, z: -2.5}
+    GridPosition: {x: 21, y: 12}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Forest
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 5.5, y: 0.12000038, z: 4.5}
+    GridPosition: {x: 20, y: 19}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 100
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 6.5, y: 0.02, z: 3.5}
+    GridPosition: {x: 21, y: 18}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 6.5, y: 0.02, z: -3.5}
+    GridPosition: {x: 21, y: 11}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 7.5, y: 0.02, z: -2.5}
+    GridPosition: {x: 22, y: 12}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 7.5, y: 0.02, z: -1.5}
+    GridPosition: {x: 22, y: 13}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 7.5, y: 0.02, z: -0.5}
+    GridPosition: {x: 22, y: 14}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 7.5, y: 0.02, z: 0.5}
+    GridPosition: {x: 22, y: 15}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 7.5, y: 0.02, z: 1.5}
+    GridPosition: {x: 22, y: 16}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 7.5, y: 0.02, z: 2.5}
+    GridPosition: {x: 22, y: 17}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Forest
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 6.5, y: 0.12000038, z: 4.5}
+    GridPosition: {x: 21, y: 19}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 100
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 7.5, y: 0.02, z: 3.5}
+    GridPosition: {x: 22, y: 18}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: -1.5, y: 0.02, z: -2.5}
+    GridPosition: {x: 13, y: 12}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Building A
+    DefaultNodeIndex: 1
+    Selected: 0
+    Walkable: 0
+    WorldPosition: {x: -0.5, y: 3.02, z: -3.5}
+    GridPosition: {x: 14, y: 11}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 99
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: -1.5, y: 0.02, z: -1.5}
+    GridPosition: {x: 13, y: 13}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: -1.5, y: 0.02, z: -0.5}
+    GridPosition: {x: 13, y: 14}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: -1.5, y: 0.02, z: 0.5}
+    GridPosition: {x: 13, y: 15}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: -1.5, y: 0.02, z: 1.5}
+    GridPosition: {x: 13, y: 16}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: -1.5, y: 0.02, z: 2.5}
+    GridPosition: {x: 13, y: 17}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 5.5, y: 0.02, z: -4.5}
+    GridPosition: {x: 20, y: 10}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: -1.5, y: 0.02, z: 3.5}
+    GridPosition: {x: 13, y: 18}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: -0.5, y: 0.02, z: 4.5}
+    GridPosition: {x: 14, y: 19}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: -1.5, y: 0.02, z: 4.5}
+    GridPosition: {x: 13, y: 19}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: -0.5, y: 0.02, z: 5.5}
+    GridPosition: {x: 14, y: 20}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 0.5, y: 0.02, z: 5.5}
+    GridPosition: {x: 15, y: 20}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 6.5, y: 0.02, z: -4.5}
+    GridPosition: {x: 21, y: 10}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 7.5, y: 0.02, z: -3.5}
+    GridPosition: {x: 22, y: 11}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 7.5, y: 0.02, z: -4.5}
+    GridPosition: {x: 22, y: 10}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 8.5, y: 0.02, z: -3.5}
+    GridPosition: {x: 23, y: 11}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 8.5, y: 0.02, z: -2.5}
+    GridPosition: {x: 23, y: 12}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 8.5, y: 0.02, z: -1.5}
+    GridPosition: {x: 23, y: 13}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 8.5, y: 0.02, z: -0.5}
+    GridPosition: {x: 23, y: 14}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 8.5, y: 0.02, z: 0.5}
+    GridPosition: {x: 23, y: 15}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 8.5, y: 0.02, z: 1.5}
+    GridPosition: {x: 23, y: 16}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 8.5, y: 0.02, z: 2.5}
+    GridPosition: {x: 23, y: 17}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Forest
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 7.5, y: 0.12000038, z: 4.5}
+    GridPosition: {x: 22, y: 19}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 100
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 8.5, y: 0.02, z: 3.5}
+    GridPosition: {x: 23, y: 18}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: -2.5, y: 0.02, z: -2.5}
+    GridPosition: {x: 12, y: 12}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Building A
+    DefaultNodeIndex: 1
+    Selected: 0
+    Walkable: 0
+    WorldPosition: {x: -1.5, y: 3.02, z: -3.5}
+    GridPosition: {x: 13, y: 11}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 99
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: -2.5, y: 0.02, z: -1.5}
+    GridPosition: {x: 12, y: 13}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: -2.5, y: 0.02, z: -0.5}
+    GridPosition: {x: 12, y: 14}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: -2.5, y: 0.02, z: 0.5}
+    GridPosition: {x: 12, y: 15}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: -2.5, y: 0.02, z: 1.5}
+    GridPosition: {x: 12, y: 16}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: -2.5, y: 0.02, z: 2.5}
+    GridPosition: {x: 12, y: 17}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: -2.5, y: 0.02, z: 3.5}
+    GridPosition: {x: 12, y: 18}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Building A
+    DefaultNodeIndex: 1
+    Selected: 0
+    Walkable: 0
+    WorldPosition: {x: 4.5, y: 3.02, z: -4.5}
+    GridPosition: {x: 19, y: 10}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 99
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 5.5, y: 0.02, z: -5.5}
+    GridPosition: {x: 20, y: 9}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 6.5, y: 0.02, z: -5.5}
+    GridPosition: {x: 21, y: 9}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 0.5, y: 0.02, z: 6.5}
+    GridPosition: {x: 15, y: 21}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Forest
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 1.5, y: 0.12000038, z: 5.5}
+    GridPosition: {x: 16, y: 20}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 100
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 9.5, y: 0.02, z: -2.5}
+    GridPosition: {x: 24, y: 12}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 9.5, y: 0.02, z: -1.5}
+    GridPosition: {x: 24, y: 13}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 9.5, y: 0.02, z: -0.5}
+    GridPosition: {x: 24, y: 14}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 9.5, y: 0.02, z: 0.5}
+    GridPosition: {x: 24, y: 15}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 9.5, y: 0.02, z: 1.5}
+    GridPosition: {x: 24, y: 16}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 9.5, y: 0.02, z: 2.5}
+    GridPosition: {x: 24, y: 17}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Forest
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 8.5, y: 0.12000038, z: 4.5}
+    GridPosition: {x: 23, y: 19}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 100
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 9.5, y: 0.02, z: 3.5}
+    GridPosition: {x: 24, y: 18}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: -3.5, y: 0.02, z: -1.5}
+    GridPosition: {x: 11, y: 13}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: -3.5, y: 0.02, z: -0.5}
+    GridPosition: {x: 11, y: 14}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: -3.5, y: 0.02, z: 0.5}
+    GridPosition: {x: 11, y: 15}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: -3.5, y: 0.02, z: 1.5}
+    GridPosition: {x: 11, y: 16}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: -3.5, y: 0.02, z: 2.5}
+    GridPosition: {x: 11, y: 17}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Building A
+    DefaultNodeIndex: 1
+    Selected: 0
+    Walkable: 0
+    WorldPosition: {x: 4.5, y: 3.02, z: -5.5}
+    GridPosition: {x: 19, y: 9}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 99
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 5.5, y: 0.02, z: -6.5}
+    GridPosition: {x: 20, y: 8}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 10.5, y: 0.02, z: -1.5}
+    GridPosition: {x: 25, y: 13}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 10.5, y: 0.02, z: -0.5}
+    GridPosition: {x: 25, y: 14}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 10.5, y: 0.02, z: 0.5}
+    GridPosition: {x: 25, y: 15}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 10.5, y: 0.02, z: 1.5}
+    GridPosition: {x: 25, y: 16}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 10.5, y: 0.02, z: 2.5}
+    GridPosition: {x: 25, y: 17}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: -4.5, y: 0.02, z: -0.5}
+    GridPosition: {x: 10, y: 14}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: -4.5, y: 0.02, z: 0.5}
+    GridPosition: {x: 10, y: 15}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: -4.5, y: 0.02, z: 1.5}
+    GridPosition: {x: 10, y: 16}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 11.5, y: 0.02, z: -0.5}
+    GridPosition: {x: 26, y: 14}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 11.5, y: 0.02, z: 0.5}
+    GridPosition: {x: 26, y: 15}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 11.5, y: 0.02, z: 1.5}
+    GridPosition: {x: 26, y: 16}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: -5.5, y: 0.02, z: 0.5}
+    GridPosition: {x: 9, y: 15}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
+  - Name: Ground
+    DefaultNodeIndex: 0
+    Selected: 0
+    Walkable: 1
+    WorldPosition: {x: 12.5, y: 0.02, z: 0.5}
+    GridPosition: {x: 27, y: 15}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
+    nodeObject: {fileID: 0}
   DrawGizmos: 0
 --- !u!114 &2825615464243368551
 MonoBehaviour:
@@ -160,10 +2632,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04138fe618a8aa14386305d9903e3da7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
-  damage: 0
-  minAttackRange: 1
-  maxAttackRange: 2
+  Health:
+    current: 0
+    Maximum: 0
+  Attack: 3
+  Skill: 2
+  Speed: 5
+  Luck: 10
+  Defence: 4
+  Resistance: 0
+  StandardAction:
+    current: 0
+    Maximum: 0
+  MinorAction:
+    current: 0
+    Maximum: 0
+  MovementPoints:
+    current: 0
+    Maximum: 42
+  MovementAnimationSpeed: 75
+  attackRange: {x: 1, y: 1}
 --- !u!114 &4554344138714963308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,22 +2664,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5691f4977d5b194cb8a4953d6fa3f5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minimumCount: 1
-  maximumCount: 1
-  target: {fileID: 0}
-  unit: {fileID: 2728144674699058014}
   withinRangeNodes: []
-  gizmoGrid: 1
+  gizmoGrid: 0
   closestNode:
     Name: 
     DefaultNodeIndex: 0
-    selected: 0
-    walkable: 0
-    worldPosition: {x: 0, y: 0, z: 0}
-    gridPositionX: 0
-    gridPositionY: 0
-    gCost: 0
-    hCost: 0
+    Selected: 0
+    Walkable: 0
+    WorldPosition: {x: 0, y: 0, z: 0}
+    GridPosition: {x: 0, y: 0}
+    GCost: 0
+    HCost: 0
+    MovementPenalty: 0
     nodeObject: {fileID: 0}
 --- !u!114 &3390080749491573590
 MonoBehaviour:
@@ -206,4 +2690,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionNames: 
-  actionCount: 0

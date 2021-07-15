@@ -3,13 +3,13 @@ using Raspberry.Movement.Actions;
 
 public class AttackAction : IAction
 {
-	private CombatComponent unitCombatComponent;
-	private CombatComponent targetUnit;
+	private Unit unitCombatComponent;
+	private Unit targetUnit;
 	private StateMachine queueComponent;
 	private bool hasAttacked = false;
 	private IAction[] preActions = new IAction[0];
 
-	public AttackAction(CombatComponent unitCombatComponent, StateMachine queueComponent, CombatComponent targetUnit, params IAction[] preActions)
+	public AttackAction(Unit unitCombatComponent, StateMachine queueComponent, Unit targetUnit, params IAction[] preActions)
 	{
 		this.unitCombatComponent = unitCombatComponent;
 		this.queueComponent = queueComponent;

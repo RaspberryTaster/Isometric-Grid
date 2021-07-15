@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class SurroundingNodes : MonoBehaviour
 {
+	public SquareGrid squareGrid;
 	public NodeGrid grid;
 	public Pathfinding Pathfinding;
 	public List<Node> surroundingNodes = new List<Node>();
@@ -41,7 +42,7 @@ public class SurroundingNodes : MonoBehaviour
 		{
 			if (neightbours[i].Walkable && !surroundingNodes.Contains(neightbours[i]))
 			{
-				int distance = Pathfinding.GetDistance(center, neightbours[i]);
+				int distance = squareGrid.GetDistance(center, neightbours[i]);
 				if (distance % 14 == 0)
 				{
 					diagonalNodes.Add(neightbours[i]);
@@ -71,11 +72,11 @@ public class SurroundingNodes : MonoBehaviour
 		{
 			if(closest == null)
 			{
-				SetClosest(surroundingNodes[i], Pathfinding.GetDistance(surroundingNodes[i], seeker));
+				SetClosest(surroundingNodes[i], squareGrid.GetDistance(surroundingNodes[i], seeker));
 			}
 			else
 			{
-				int distanceToNode = Pathfinding.GetDistance(surroundingNodes[i], seeker);
+				int distanceToNode = squareGrid.GetDistance(surroundingNodes[i], seeker);
 				if (closestDistance > distanceToNode)
 				{
 					SetClosest(surroundingNodes[i], distanceToNode);

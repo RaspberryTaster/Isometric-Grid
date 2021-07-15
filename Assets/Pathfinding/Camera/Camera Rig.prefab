@@ -45,15 +45,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followTransform: {fileID: 0}
-  cameraTransform: {fileID: 3943073860366720789}
   follow: 0
-  hasLockedOn: 0
   normalsSpeed: 0.5
   fastSpeed: 3
   movementSpeed: 1
   movementTime: 5
   toFollowTime: 5
   rotation_Amount: 1
+  edgesize: 20
+  distanceTillLock: 0.2
   zoomAmount: {x: 0, y: -5, z: 5}
   newPosition: {x: 0, y: 0, z: 0}
   newRotation: {x: 0, y: 0, z: 0, w: 0}
@@ -64,8 +64,6 @@ MonoBehaviour:
   dragCurrentPosition: {x: 0, y: 0, z: 0}
   rotateStartPosition: {x: 0, y: 0, z: 0}
   rotateCurrentPosition: {x: 0, y: 0, z: 0}
-  edgesize: 20
-  distanceTillLock: 0.2
 --- !u!1 &3943073860366720790
 GameObject:
   m_ObjectHideFlags: 0
