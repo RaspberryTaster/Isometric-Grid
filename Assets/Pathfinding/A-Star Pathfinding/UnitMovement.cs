@@ -23,7 +23,6 @@ public class UnitMovement : MonoBehaviour
 			return movementNodes.walkable;
 		}
 	}
-	//public List<Node> WithinRangeNodes = new List<Node>();
 
 	public bool DrawGizmos;
 	private void Awake()
@@ -56,12 +55,6 @@ public class UnitMovement : MonoBehaviour
 	[Button]
 	public void SetDistanceNodes()
 	{
-		/*
-		foreach (Node n in WithinRangeNodes)
-		{
-			n.SetColor(n.DefaultNodeIndex);
-		}
-		*/
 		foreach (Node n in MovementNodes)
 		{
 			n.SetColor(n.DefaultNodeIndex);
@@ -74,36 +67,12 @@ public class UnitMovement : MonoBehaviour
 
 		Node center = SquareGrid.Instance.NodeGrid.NodeFromWorldPoint(transform.position);
 		movementNodes = DijkstraFrontier(center);
-		/*
-		WithinRangeNodes = SquareGrid.Instance.NodeGrid.GetWithinRange(center, combatComponent.attackRange.x, combatComponent.attackRange.y);
 
-		foreach (Node n in WithinRangeNodes)
-		{
-			n.SetColor((int)TIleMode.ATTACKRANGE);
-		}
-		*/
 		foreach (Node n in MovementNodes)
 		{
 			n.SetColor((int)TIleMode.MOVEMENT);
 		}
 	}
-	/*
-	public List<Node> PredictedRangeNodes(List<Node> targetNodes)
-	{
-		List<Node> value = new List<Node>();
-		foreach (Node n in targetNodes)
-		{
-			List<Node> rangeNodes = SquareGrid.Instance.NodeGrid.GetWithinRange(n, combatComponent.attackRange.x, combatComponent.attackRange.y);
-			for (int i = 0; i < rangeNodes.Count; i++)
-			{
-				if (value.Contains(rangeNodes[i])) continue;
-				value.Add(rangeNodes[i]);
-			}
-		}
-
-		return value;
-	}
-	*/
 	public MovementNodes DijkstraFrontier(Node center)
 	{
 		List<Node> edge = new List<Node>();
@@ -209,13 +178,6 @@ public class UnitMovement : MonoBehaviour
 			Gizmos.color = Color.yellow;
 			Gizmos.DrawWireCube(n.WorldPosition, Vector3.one * (SquareGrid.Instance.NodeDiameter - .6f));
 		}
-		/*
-		foreach (Node n in WithinRangeNodes)
-		{
-			Gizmos.color = Color.magenta;
-			Gizmos.DrawWireCube(n.WorldPosition, Vector3.one * (SquareGrid.Instance.NodeDiameter - .4f));
-		}
-		*/
 	}
 
 	public void OnDrawGizmos()
