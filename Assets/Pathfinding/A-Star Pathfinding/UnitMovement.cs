@@ -146,7 +146,7 @@ public class UnitMovement : MonoBehaviour
 				currentWaypoint = path[targetIndex];
 			}
 
-			transform.position = Vector3.MoveTowards(transform.position, currentWaypoint.WorldPosition, combatComponent.MovementAnimationSpeed * currentNode.movementAnimationMultiplier * Time.deltaTime);
+			transform.position = Vector3.MoveTowards(transform.position, currentWaypoint.WorldPosition, (float)combatComponent.MovementAnimationSpeed.Value * currentNode.movementAnimationMultiplier * Time.deltaTime);
 			yield return null;
 
 		}

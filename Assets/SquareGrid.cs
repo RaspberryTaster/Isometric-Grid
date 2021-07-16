@@ -42,7 +42,7 @@ public class SquareGrid : Singleton<SquareGrid>
 	{
 		NodeSpawner.SetRegions();
 		RoundGridSize();
-		if(NodeParent == null)
+		if (NodeParent == null)
 		{
 			NodeParent = GetComponentInChildren<NodeParent>();
 		}
@@ -56,7 +56,7 @@ public class SquareGrid : Singleton<SquareGrid>
 		NodeParent.transform.position = Vector3.zero;
 
 		NodeGrid = new NodeGrid(new Vector2Int(gridSize.x, gridSize.y));
-		Vector3 worldBottomLeft = transform.position - Vector3.right * gridSize.x/ 2 - Vector3.forward * gridSize.y / 2;
+		Vector3 worldBottomLeft = transform.position - Vector3.right * gridSize.x / 2 - Vector3.forward * gridSize.y / 2;
 
 		for (int x = 0; x < NodeGrid.NodeArray.GetLength(0); x++)
 		{
@@ -75,13 +75,13 @@ public class SquareGrid : Singleton<SquareGrid>
 		frontier.Enqueue(center);
 		List<Node> reached = new List<Node>() { center };
 
-		while(frontier.Count != 0)
+		while (frontier.Count != 0)
 		{
 			Node current = frontier.Dequeue();
 			List<Node> neighbours = NodeGrid.GetNeighbours(current);
 			foreach (Node next in neighbours)
 			{
-				if (GetDistance(center, next) > distance !& reached.Contains(next)) continue;
+				if (GetDistance(center, next) > distance! & reached.Contains(next)) continue;
 				frontier.Enqueue(next);
 				reached.Add(next);
 			}
@@ -111,37 +111,4 @@ public class SquareGrid : Singleton<SquareGrid>
 		return value;
 	}
 
-
-
-	/*
-	private float gizmoBoundry = .1f;
-	private float gizmoNodeHeight = 1;
-	public bool DrawGizmos;
-
-
-	Vector3 GizmoNodeSize
-	{
-		get
-		{
-			Vector3 gizmoSize = Vector3.one * (NodeDiameter - gizmoBoundry);
-			gizmoSize.y = gizmoNodeHeight;
-			return gizmoSize;
-		}
-	}
-	void OnDrawGizmos()
-	{
-		
-		Gizmos.DrawWireCube(transform.position, new Vector3(gridSize.x, gizmoNodeHeight,gridSize.y));
-
-		if (!DrawGizmos) return;
-		if (NodeGrid != null)
-		{
-			foreach (Node n in NodeGrid.NodeArray)
-			{
-				Gizmos.DrawWireCube(n.WorldPosition, GizmoNodeSize);
-			}
-		}
-		
-	}
-	*/
 }

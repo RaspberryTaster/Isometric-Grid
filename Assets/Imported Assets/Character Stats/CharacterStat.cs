@@ -14,7 +14,7 @@ namespace Kryz.CharacterStats
 		protected double lastBaseValue;
 
 		protected double _value;
-		[ShowNativeProperty] public virtual double Value {
+		public virtual double Value {
 			get {
 				if(isDirty || lastBaseValue != BaseValue) {
 					lastBaseValue = BaseValue;

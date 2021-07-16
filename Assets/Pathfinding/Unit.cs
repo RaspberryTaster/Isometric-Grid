@@ -1,3 +1,4 @@
+using Kryz.CharacterStats;
 using NaughtyAttributes;
 using UnityEngine;
 
@@ -33,7 +34,7 @@ public class Unit : MonoBehaviour
 	[BoxGroup("Actions")] public RaspberryStat MinorAction;
 	[BoxGroup("Actions")] public RaspberryStat MovementPoints;
 	[Space]
-	public int MovementAnimationSpeed = 10;
+	public CharacterStat MovementAnimationSpeed = new CharacterStat(10);
 
 	public Vector2Int attackRange = new Vector2Int(1,1);
 
