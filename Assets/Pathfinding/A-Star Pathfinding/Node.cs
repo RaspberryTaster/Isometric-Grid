@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public enum TIleMode
 {
@@ -22,6 +23,7 @@ public class Node : IHeapItem<Node>
 	public int MovementPenalty;
 	public Node parent;
 	public NodeObject nodeObject;
+	public List<Unit> OccupyingUnits = new List<Unit>();
 	int heapIndex;
 
 	public float movementAnimationMultiplier;

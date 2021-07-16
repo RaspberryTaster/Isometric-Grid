@@ -7,7 +7,6 @@ public class UnitMovementInput : MonoBehaviour
 {
 	public DistanceCheck SurroundingNodes;
 	public Node selectedNode;
-	public SquareGrid squareGrid;
 	public UnitMovement unit;
 	public Unit controlledUnitCombatComponent;
 	public StateMachine stateMachine;
@@ -32,19 +31,22 @@ public class UnitMovementInput : MonoBehaviour
 	private void PlayerInput_OnHitRaycast(RaycastHit hit)
 	{
 		unit.SetDistanceNodes();
-
+		/*
 		UnitMovement targetUnit = hit.collider.GetComponent<UnitMovement>();
+		
 		Node targetUnitNode = null;
 		if (targetUnit != null)
 		{
-			targetUnitNode = squareGrid.NodeGrid.NodeFromWorldPoint(targetUnit.transform.position);
+			targetUnitNode = SquareGrid.Instance.NodeGrid.NodeFromWorldPoint(targetUnit.transform.position);
 		}
-		Node hitNode = squareGrid.NodeGrid.NodeFromWorldPoint(hit.point);
-		Unit targtCombatComponent = hit.collider.GetComponent<Unit>();
+		*/
+		Node hitNode = SquareGrid.Instance.NodeGrid.NodeFromWorldPoint(hit.point);
+		//Unit targtCombatComponent = hit.collider.GetComponent<Unit>();
 
 		int stoppingDistance = 0;
 		IAction action;
 		Action_Types action_Types;
+		/*
 		if (targetUnit != null && targetUnitNode != null && unit.WithinRangeNodes.Contains(targetUnitNode))
 		{
 			SurroundingNodes.SetUp(unit.transform, targetUnitNode, controlledUnitCombatComponent.attackRange.x, controlledUnitCombatComponent.attackRange.y);
@@ -59,6 +61,11 @@ public class UnitMovementInput : MonoBehaviour
 			action = new MoveAction(unit, stateMachine, selectedNode, stoppingDistance);
 			action_Types = Action_Types.WALK;
 		}
+		*/
+
+		selectedNode = hitNode;
+		action = new MoveAction(unit, stateMachine, selectedNode, stoppingDistance);
+		action_Types = Action_Types.WALK;
 		if (selectedNode == null || !selectedNode.Walkable || action == null || !unit.MovementNodes.Contains(selectedNode)) return;
 		stateMachine.Dequeue_All_Before_Adding_Action(action, action_Types);
 	}

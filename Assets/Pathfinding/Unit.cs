@@ -40,6 +40,12 @@ public class Unit : MonoBehaviour
 	public int WeaponDamage = 5;
 	public int WeaponEnhancement = 0;
 	public int WeaponProficiency = 2;
+
+	public PowerHandler powerHandler;
+	private void Awake()
+	{
+		powerHandler = GetComponent<PowerHandler>();
+	}
 	public void AttackOpponent(Unit target)
 	{
 		Debug.Log($"{gameObject.name} attacked {target.gameObject.name}!");

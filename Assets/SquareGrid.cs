@@ -6,21 +6,16 @@ using UnityEditor;
 using UnityEngine;
 
 [RequireComponent(typeof(NodeSpawner))]
-public class SquareGrid : MonoBehaviour
+public class SquareGrid : Singleton<SquareGrid>
 {
 	public Vector2Int gridSize = new Vector2Int(30, 30);
-	public float NodeRadius = 0.5f;
-
-	public float NodeDiameter => NodeRadius * 2;
-	public NodeGrid NodeGrid;
-	[SerializeField] private Pathfinding pathfidning;
-	[SerializeField] private GameObject GridNodes;
+	public NodeGrid NodeGrid = new NodeGrid(Vector2Int.zero);
+	[SerializeField] private NodeParent NodeParent;
 	[SerializeField] private NodeObject NodePrefab;
 	[SerializeField] private NodeSpawner NodeSpawner;
-	public bool DrawGizmos;
 
-
-
+	public float NodeRadius = 0.5f;
+	[ShowNativeProperty] public float NodeDiameter => NodeRadius * 2;
 
 	private void OnValidate()
 	{
@@ -36,14 +31,10 @@ public class SquareGrid : MonoBehaviour
 	void Awake()
 	{
 		NodeSpawner = GetComponent<NodeSpawner>();
-
+#if UNITY_EDITOR
+		if (!EditorApplication.isPlaying) return;
+#endif
 		CreateGrid();
-	}
-
-
-	private void Start()
-	{
-
 	}
 
 	[Button]
@@ -51,15 +42,18 @@ public class SquareGrid : MonoBehaviour
 	{
 		NodeSpawner.SetRegions();
 		RoundGridSize();
-
-		if (GridNodes != null)
+		if(NodeParent == null)
 		{
-			DestroyImmediate(GridNodes);
+			NodeParent = GetComponentInChildren<NodeParent>();
 		}
 
-		GridNodes = new GameObject("Grid Nodes");
-		GridNodes.transform.parent = transform;
-		GridNodes.transform.position = Vector3.zero;
+		if (NodeParent != null)
+		{
+			DestroyImmediate(NodeParent.gameObject);
+		}
+		NodeParent = new GameObject("Node Parent").AddComponent<NodeParent>();
+		NodeParent.transform.parent = transform;
+		NodeParent.transform.position = Vector3.zero;
 
 		NodeGrid = new NodeGrid(new Vector2Int(gridSize.x, gridSize.y));
 		Vector3 worldBottomLeft = transform.position - Vector3.right * gridSize.x/ 2 - Vector3.forward * gridSize.y / 2;
@@ -69,7 +63,7 @@ public class SquareGrid : MonoBehaviour
 			for (int y = 0; y < NodeGrid.NodeArray.GetLength(1); y++)
 			{
 				Vector3 worldPoint = worldBottomLeft + Vector3.right * (x * NodeDiameter + NodeRadius) + Vector3.forward * (y * NodeDiameter + NodeRadius);
-				NodeSpawner.Spawn(x, y, worldPoint, NodePrefab, GridNodes, NodeGrid);
+				NodeSpawner.Spawn(x, y, worldPoint, NodePrefab, NodeParent, NodeGrid);
 			}
 		}
 	}
@@ -106,19 +100,24 @@ public class SquareGrid : MonoBehaviour
 
 		if (dstX > dstY)
 		{
-			value = pathfidning.DiagonalCost * dstY + pathfidning.HorizontalCost
+			value = Pathfinding.Instance.DiagonalCost * dstY + Pathfinding.Instance.HorizontalCost
 				* (dstX - dstY);
 		}
 		else
 		{
-			value = pathfidning.DiagonalCost * dstX + pathfidning.HorizontalCost * (dstY - dstX);
+			value = Pathfinding.Instance.DiagonalCost * dstX + Pathfinding.Instance.HorizontalCost * (dstY - dstX);
 		}
 
 		return value;
 	}
 
+
+
+	/*
 	private float gizmoBoundry = .1f;
 	private float gizmoNodeHeight = 1;
+	public bool DrawGizmos;
+
 
 	Vector3 GizmoNodeSize
 	{
@@ -131,6 +130,7 @@ public class SquareGrid : MonoBehaviour
 	}
 	void OnDrawGizmos()
 	{
+		
 		Gizmos.DrawWireCube(transform.position, new Vector3(gridSize.x, gizmoNodeHeight,gridSize.y));
 
 		if (!DrawGizmos) return;
@@ -141,5 +141,7 @@ public class SquareGrid : MonoBehaviour
 				Gizmos.DrawWireCube(n.WorldPosition, GizmoNodeSize);
 			}
 		}
+		
 	}
+	*/
 }

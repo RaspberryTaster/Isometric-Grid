@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pathfinding : MonoBehaviour
+public class Pathfinding : Singleton<Pathfinding>
 {
 	PathRequestManager requestManager;
 	SquareGrid grid;

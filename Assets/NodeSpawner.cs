@@ -34,7 +34,7 @@ public class NodeSpawner : MonoBehaviour
 		}
 	}
 
-	public void Spawn(int x, int y, Vector3 worldPoint, NodeObject nodePrefab, GameObject GridNodes, NodeGrid NodeGrid)
+	public void Spawn(int x, int y, Vector3 worldPoint, NodeObject nodePrefab, NodeParent NodeParent, NodeGrid NodeGrid)
 	{
         string Name = "N/A";
         TerrainType terrainType = new TerrainType();
@@ -78,7 +78,7 @@ public class NodeSpawner : MonoBehaviour
             tileMode = TIleMode.UNREACHABLE;
 		}
         
-        nodeObject.transform.parent = GridNodes.transform;
+        nodeObject.transform.parent = NodeParent.transform;
         NodeGrid.NodeArray[x, y] = new Node(walkable, worldPoint, x, y, (int)tileMode, Name, terrainType.penalty, nodeObject, terrainType.animationSpeedMultiplier);
         nodeObject = null;
     }

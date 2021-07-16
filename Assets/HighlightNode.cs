@@ -6,7 +6,6 @@ public class HighlightNode : MonoBehaviour
 {
     [SerializeField] private PlayerInput playerInput;
     [SerializeField] private SelectedNodeUI selectedNodeUI;
-    [SerializeField] private SquareGrid squareGrid;
 
     private void OnEnable()
 	{
@@ -20,7 +19,7 @@ public class HighlightNode : MonoBehaviour
     }
 	private void PlayerInput_OnHiglight(RaycastHit hit)
 	{
-        Node n = squareGrid.NodeGrid.NodeFromWorldPoint(hit.point);
+        Node n = SquareGrid.Instance.NodeGrid.NodeFromWorldPoint(hit.point);
         selectedNodeUI.Set(n);
     }
 
