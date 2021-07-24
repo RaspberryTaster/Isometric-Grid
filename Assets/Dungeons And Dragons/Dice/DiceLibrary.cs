@@ -4,19 +4,33 @@ using UnityEngine;
 
 public static class DiceLibrary
 {
-
-	public static int Die(int maximum,int minimum = 1, int diceCount = 1)
+	public static Die TwentyDie = new Die(1, 1, 20);
+	public static int RollDie(Die die)
 	{
 		int value = 0;
-		for(int i = 0; i < diceCount; i++)
+		for(int i = 0; i < die.Count; i++)
 		{
-			value += Random.Range(maximum, minimum + 1);
+			value += Random.Range(die.Maximum, die.Minimum + 1);
 		}
 		return value;
 	}
 
-	public static bool Hit(int modifiers, int targetRoll)
+	public static bool AttackRollSucessful(int modifiers, int targetNumber)
 	{
-		return Die(20) + modifiers >= targetRoll;
+		return RollDie(TwentyDie) + modifiers >= targetNumber;
+	}
+}
+[System.Serializable]
+public struct Die
+{
+	public int Count;
+	public int Minimum;
+	public int Maximum;
+
+	public Die(int count, int minimum, int maximum)
+	{
+		Count = count;
+		Minimum = minimum;
+		Maximum = maximum;
 	}
 }

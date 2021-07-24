@@ -79,7 +79,7 @@ namespace Raspberry.Movement
             IRange range_Temp = new Range_Null(range_Interface_Values);
             Target_Position target = new Target_Position(position, range_Temp);
             IMove_Intent move_Intent = new Move_Intent_Null(0.6f);
-            movement_Component.Move(target, traversal_Method, move_Intent, Action_Types.ENVIROMENT_MOVE);
+            movement_Component.Move(target, traversal_Method, move_Intent, ActionTypesDebug.ENVIROMENT_MOVE);
         }
 
         public void SetObjectDestination(GameObject gameObject, IRange range, ITraversal_Method traversal_Method)

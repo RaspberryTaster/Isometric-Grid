@@ -68,29 +68,7 @@ public class SquareGrid : Singleton<SquareGrid>
 		}
 	}
 
-	public List<Node> GetNodesWithinDistance(Node center, int distance)
-	{
-
-		Queue<Node> frontier = new Queue<Node>();
-		frontier.Enqueue(center);
-		List<Node> reached = new List<Node>() { center };
-
-		while (frontier.Count != 0)
-		{
-			Node current = frontier.Dequeue();
-			List<Node> neighbours = NodeGrid.GetNeighbours(current);
-			foreach (Node next in neighbours)
-			{
-				if (GetDistance(center, next) > distance! & reached.Contains(next)) continue;
-				frontier.Enqueue(next);
-				reached.Add(next);
-			}
-		}
-
-		return reached;
-	}
-
-	public int GetDistance(Node nodeA, Node nodeB)
+	public int GetDistance(Node nodeA, Node nodeB, int diagonal = 1, int horizontal = 1)
 	{
 		if (nodeA == null || nodeB == null) return 0;
 
@@ -100,12 +78,12 @@ public class SquareGrid : Singleton<SquareGrid>
 
 		if (dstX > dstY)
 		{
-			value = Pathfinding.Instance.DiagonalCost * dstY + Pathfinding.Instance.HorizontalCost
+			value = diagonal * dstY + horizontal
 				* (dstX - dstY);
 		}
 		else
 		{
-			value = Pathfinding.Instance.DiagonalCost * dstX + Pathfinding.Instance.HorizontalCost * (dstY - dstX);
+			value = diagonal * dstX + horizontal * (dstY - dstX);
 		}
 
 		return value;

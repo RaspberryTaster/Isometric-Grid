@@ -41,31 +41,7 @@ namespace Assets
 			return neighbours;
 		}
 
-		public List<Node> GetNeighbours(Node node, int xAxis, int yAxis)
-		{
-			List<Node> neighbours = new List<Node>();
-
-			for (int x = -xAxis; x <= xAxis; x++)
-			{
-				for (int y = -yAxis; y <= yAxis; y++)
-				{
-					if (x == 0 && y == 0)
-						continue;
-
-					int checkX = node.GridPosition.x + x;
-					int checkY = node.GridPosition.y + y;
-
-					if (checkX >= 0 && checkX < GridSize.x && checkY >= 0 && checkY < GridSize.y)
-					{
-						neighbours.Add(NodeArray[checkX, checkY]);
-					}
-				}
-			}
-
-			return neighbours;
-		}
-
-		public List<Node> GetNeighbours(Node node, List<Node> avoid)
+		public List<Node> GetNeighbours(Node node, List<Node> avoid = null)
 		{
 			List<Node> neighbours = new List<Node>();
 
@@ -82,7 +58,7 @@ namespace Assets
 					if (checkX >= 0 && checkX < GridSize.x && checkY >= 0 && checkY < GridSize.y)
 					{
 						Node item = NodeArray[checkX, checkY];
-						if (avoid.Contains(item)) continue;
+						if (avoid != null && avoid.Contains(item)) continue;
 						neighbours.Add(item);
 					}
 				}
@@ -125,14 +101,14 @@ namespace Assets
 
 		public List<Node> GetWithinRange(Node center, int minimumCount, int maximumCount)
 		{
-			List<Node> reached = new List<Node>();
+			List<Node> reached = new List<Node>() { center};
 			List<Node> frontier = new List<Node>();
 			List<Node> withinRangeNodes = new List<Node>();
 			for (int i = 0; i < maximumCount; i++)
 			{
 				if (i == 0)
 				{
-					frontier = GetAdjacentNodes(center, false);
+					frontier = GetNeighbours(center);
 				}
 				else
 				{
@@ -162,7 +138,6 @@ namespace Assets
 			return withinRangeNodes;
 		}
 
-		private float buffer = 0;
 		public Node NodeFromWorldPoint(Vector3 worldPosition)
 		{
 			float percentX = (worldPosition.x + GridSize.x / 2) / GridSize.x;

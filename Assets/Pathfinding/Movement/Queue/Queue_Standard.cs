@@ -7,17 +7,17 @@ namespace Assets.Movement
 	public class Queue_Standard : IQueue, IStrategy<IQueue>
 	{
 		private List<IAction> actions;
-		private List<Action_Types> actionNames;
+		private List<ActionTypesDebug> actionNames;
 		private StateMachine queue_Component;
 
-		public Queue_Standard(List<IAction> actions, List<Action_Types> actionNames, StateMachine queue_Component)
+		public Queue_Standard(List<IAction> actions, List<ActionTypesDebug> actionNames, StateMachine queue_Component)
 		{
 			this.actions = actions;
 			this.actionNames = actionNames;
 			this.queue_Component = queue_Component;
 		}
 
-		public void Add(IAction action, Action_Types action_Types)
+		public void Add(IAction action, ActionTypesDebug action_Types)
 		{
 			actions.Add(action);
 			actionNames.Add(action_Types);
@@ -70,13 +70,13 @@ namespace Assets.Movement
 			}
 		}
 
-		public void Delay_Action_With_Action(IAction delayedAction, IAction action, Action_Types action_Types)
+		public void Delay_Action_With_Action(IAction delayedAction, IAction action, ActionTypesDebug action_Types)
 		{
 			int actionIndex = actions.IndexOf(delayedAction);
 			Insert_To_Action_Queue(action, action_Types, actionIndex);
 		}
 
-		public void Insert_To_Action_Queue(IAction action, Action_Types action_Types, int actionIndex)
+		public void Insert_To_Action_Queue(IAction action, ActionTypesDebug action_Types, int actionIndex)
 		{
 			actions.Insert(actionIndex, action);
 			actionNames.Insert(actionIndex, action_Types);

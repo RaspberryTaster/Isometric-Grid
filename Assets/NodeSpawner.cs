@@ -37,7 +37,7 @@ public class NodeSpawner : MonoBehaviour
 	public void Spawn(int x, int y, Vector3 worldPoint, NodeObject nodePrefab, NodeParent NodeParent, NodeGrid NodeGrid)
 	{
         string Name = "N/A";
-        TerrainType terrainType = new TerrainType();
+        TerrainType terrainType;
         nodeObject = Instantiate(nodePrefab, worldPoint, Quaternion.identity);
         hits = Physics.BoxCastAll(worldPoint, nodeObject.transform.lossyScale / 2, direction, nodeObject.transform.rotation, maxDistance, EnviromentMask);
         bool walkable = false;
@@ -59,8 +59,8 @@ public class NodeSpawner : MonoBehaviour
             }
 
 
-            Vector3 vector3 = hit.point + positionOffset + new Vector3(0, this.nodeObject.rnd.bounds.size.y / 2, 0);
-            nodeObject.transform.position = new Vector3(nodeObject.transform.position.x, vector3.y, this.nodeObject.transform.position.z);
+            Vector3 vector3 = hit.point + positionOffset + new Vector3(0, nodeObject.rnd.bounds.size.y / 2, 0);
+            nodeObject.transform.position = new Vector3(nodeObject.transform.position.x, vector3.y, nodeObject.transform.position.z);
             Name = hit.transform.gameObject.name;
             walkable = !(hit.transform.gameObject.layer == LayerMask.NameToLayer("Unwalkable"));
         }
@@ -75,6 +75,7 @@ public class NodeSpawner : MonoBehaviour
         }
         else
 		{
+            walkableRegionDictionary.TryGetValue(hit.collider.gameObject.layer, out terrainType);
             tileMode = TIleMode.UNREACHABLE;
 		}
         
@@ -106,6 +107,6 @@ public class NodeSpawner : MonoBehaviour
 public class TerrainType
 {
     public LayerMask terrainMask;
-    public int penalty = 99;
+    public int penalty = 999;
     public float animationSpeedMultiplier = 1;
 }

@@ -58,7 +58,7 @@ namespace Raspberry.Movement
 			Movement_Handler.Idle();
 		}
 
-		public void Move(ITarget target, ITraversal_Method traversal_Method, IMove_Intent move_Intent, Action_Types action_Types)
+		public void Move(ITarget target, ITraversal_Method traversal_Method, IMove_Intent move_Intent, ActionTypesDebug action_Types)
 		{
 			//IAction action = new Action_Dependant_On_Move(queue_Component, Movement_Handler, target, traversal_Method, self, move_Intent, gameObject);
 			//queue_Component.Dequeue_All_Before_Adding_Action(action, action_Types + queue_Component.actionCount);

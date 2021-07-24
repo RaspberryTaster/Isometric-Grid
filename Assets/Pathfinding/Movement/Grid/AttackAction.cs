@@ -3,16 +3,16 @@ using Raspberry.Movement.Actions;
 
 public class AttackAction : IAction
 {
-	private Unit unitCombatComponent;
+	private Unit unit;
 	private Unit targetUnit;
-	private StateMachine queueComponent;
+	private StateMachine stateMachine;
 	private bool hasAttacked = false;
 	private IAction[] preActions = new IAction[0];
 
-	public AttackAction(Unit unitCombatComponent, StateMachine queueComponent, Unit targetUnit, params IAction[] preActions)
+	public AttackAction(Unit unit, StateMachine stateMachine, Unit targetUnit, params IAction[] preActions)
 	{
-		this.unitCombatComponent = unitCombatComponent;
-		this.queueComponent = queueComponent;
+		this.unit = unit;
+		this.stateMachine = stateMachine;
 		this.preActions = preActions;
 		this.targetUnit = targetUnit;
 	}
@@ -29,13 +29,13 @@ public class AttackAction : IAction
 		{
 			if (!preActions[i].IsDone())
 			{
-				queueComponent.Delay_Action_With_Action(this, preActions[i], Action_Types.DELAY_WITH_MOVE);
+				stateMachine.Delay_Action_With_Action(this, preActions[i], ActionTypesDebug.DELAY_WITH_MOVE);
 				notReady = true;
 				break;
 			}
 		}
 		if (notReady) return;
-		unitCombatComponent.AttackOpponent(targetUnit);
+		unit.AttackOpponent(targetUnit);
 		hasAttacked = true;
 	}
 
@@ -48,7 +48,7 @@ public class AttackAction : IAction
 	}
 	public void Exit()
 	{
-		queueComponent.Dequeue(this);
+		stateMachine.Dequeue(this);
 	}
 
 }

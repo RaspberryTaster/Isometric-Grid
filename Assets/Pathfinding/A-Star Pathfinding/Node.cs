@@ -61,6 +61,15 @@ public class Node : IHeapItem<Node>
 		}
 	}
 
+	public void UnOccupy(Unit unit)
+	{
+		OccupyingUnits.Remove(unit);
+	}
+	public void Occupy(Unit unit)
+	{
+		unit.OccupyingNodes.Add(this);
+		OccupyingUnits.Add(unit);
+	}
 	public int CompareTo(Node nodeToCompare)
 	{
 		int compare = fCost.CompareTo(nodeToCompare.fCost);

@@ -8,7 +8,8 @@ public class PowerHandler : MonoBehaviour
     public Unit unit;
 	public UnitMovement unitMovement;
     public List<IPower> powers = new List<IPower>();
-    public IPower selected;
+	public List<Unit> TargetUnits = new List<Unit>();
+    public IPower SelectedPower;
     public InRangeData rangeData;
 	private void Awake()
 	{
@@ -18,26 +19,34 @@ public class PowerHandler : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
     {
-        powers.Add(new BasicAttack());
+        powers.Add(new BasicAttack(unit));
     }
 
 	[Button]
 	public void Test()
 	{
-        powers[0].SelectPower(unit);
+        powers[0].SelectPower();
 	}
     
     public void SelectPower(IPower power, InRangeData inRangeData)
 	{
 		unitMovement.SetDistanceNodes();
-
-		selected = power;
+		TargetUnits.Clear();
+		unit.currentState = ControlState.ATTACK;
+		SelectedPower = power;
         rangeData = inRangeData;
 
 		foreach (Node n in rangeData.nodesInRange)
 		{
 			n.SetColor((int)TIleMode.ATTACKRANGE);
 		}
+	}
+
+	public void AddTarget(Unit unit)
+	{
+		Debug.Log($"Add {unit}");
+		TargetUnits.Add(unit);
+		Debug.Log(TargetUnits.Count);
 	}
 
 	private float gizmoBoundry = .1f;
@@ -67,8 +76,12 @@ public class PowerHandler : MonoBehaviour
 		}
 
 	}
-	private void OnDisable()
+
+	public void Clear()
 	{
-		Debug.Log("Disabled");
+		unit.currentState = ControlState.MOVEMENT;
+		rangeData.nodesInRange.Clear();
+		rangeData.suitableUnits.Clear();
+		TargetUnits.Clear();
 	}
 }

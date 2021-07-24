@@ -9,13 +9,14 @@ public class SelectedNodeUI : MonoBehaviour
     public TextMeshProUGUI gridPosition;
     public TextMeshProUGUI worldPosition;
     public TextMeshProUGUI MovementPenalty;
-
+    public TextMeshProUGUI AnimationSpeed;
 
     public void Set(Node n)
 	{
-        nodeName.text = n.Name;
-        gridPosition.text = n.GridPosition.ToString();
-        worldPosition.text = n.WorldPosition.ToString();
-        MovementPenalty.text = n.MovementPenalty.ToString();
+        nodeName.text = "Node name: " + n.Name;
+        gridPosition.text = "Grid position: " + n.GridPosition.ToString();
+        worldPosition.text = "World position: " + n.WorldPosition.ToString();
+        MovementPenalty.text = "Movement penalty: " + n.MovementPenalty.ToString();
+        AnimationSpeed.text = "Animation multiplier: " + n.movementAnimationMultiplier.ToString();
 	}
 }

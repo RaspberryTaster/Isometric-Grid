@@ -28,7 +28,7 @@ public class MoveAction : IAction
 		{
 			if (!preActions[i].IsDone())
 			{
-				queueComponent.Delay_Action_With_Action(this, preActions[i], Action_Types.DELAY_WITH_MOVE);
+				queueComponent.Delay_Action_With_Action(this, preActions[i], ActionTypesDebug.DELAY_WITH_MOVE);
 				notReady = true;
 				break;
 			}

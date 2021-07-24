@@ -7,7 +7,7 @@ using System.Collections.Generic;
 [RequireComponent(typeof(Unit))]
 public class UnitMovement : MonoBehaviour
 {
-	[SerializeField] private Unit combatComponent;
+	[SerializeField] private Unit unit;
 	
 	private Node[] path;
 	private int targetIndex;
@@ -28,13 +28,18 @@ public class UnitMovement : MonoBehaviour
 	private void Awake()
 	{
 		yOffset = transform.position.y;
-		combatComponent = GetComponent<Unit>();
+		unit = GetComponent<Unit>();
 
 
 	}
 
 	private void Start()
 	{
+
+		unit.UnOccupy();
+		Node currentNode = SquareGrid.Instance.NodeGrid.NodeFromWorldPoint(transform.position);
+		transform.position = currentNode.WorldPosition;
+		unit.Occupy(currentNode);
 		SetDistanceNodes();
 	}
 
@@ -65,11 +70,13 @@ public class UnitMovement : MonoBehaviour
 			Debug.LogWarning("Node grid is null");
 		}
 
-		Node center = SquareGrid.Instance.NodeGrid.NodeFromWorldPoint(transform.position);
-		movementNodes = DijkstraFrontier(center);
+		movementNodes = DijkstraFrontier(unit.OccupyingNodes[0]);
+		Debug.Log(MovementNodes.Count);
 
-		foreach (Node n in MovementNodes)
+		for(int i = 0; i < MovementNodes.Count; i++)
 		{
+			Debug.Log(i);
+			Node n = MovementNodes[i];
 			n.SetColor((int)TIleMode.MOVEMENT);
 		}
 	}
@@ -81,7 +88,6 @@ public class UnitMovement : MonoBehaviour
 		frontier.Enqueue(center);
 		Dictionary<Node, int> costSoFar = new Dictionary<Node, int>();
 		Dictionary<Node, Node> cameFrom = new Dictionary<Node, Node>();
-
 		costSoFar[center] = 0;
 		cameFrom[center] = null;
 
@@ -100,8 +106,8 @@ public class UnitMovement : MonoBehaviour
 					}
 					continue;
 				}
-				int newCost = costSoFar[current] + SquareGrid.Instance.GetDistance(current, next) + next.MovementPenalty;
-				if (newCost > combatComponent.MovementPoints.CurrentValue)
+				int newCost = costSoFar[current] + SquareGrid.Instance.GetDistance(current, next, Pathfinding.Instance.DiagonalCost, Pathfinding.Instance.HorizontalCost) + next.MovementPenalty;
+				if (newCost > unit.MovementPoints.CurrentValue)
 				{
 					if (!edge.Contains(current))
 					{
@@ -137,7 +143,9 @@ public class UnitMovement : MonoBehaviour
 		Node currentWaypoint = path[0];
 		while (true) {
 			if (transform.position == currentWaypoint.WorldPosition) {
+				unit.UnOccupy();
 				currentNode = SquareGrid.Instance.NodeGrid.NodeFromWorldPoint(transform.position);
+				unit.Occupy(currentNode);
 				targetIndex ++;
 				if (targetIndex >= path.Length) {
 					endOfPath?.Invoke(true);
@@ -146,7 +154,7 @@ public class UnitMovement : MonoBehaviour
 				currentWaypoint = path[targetIndex];
 			}
 
-			transform.position = Vector3.MoveTowards(transform.position, currentWaypoint.WorldPosition, (float)combatComponent.MovementAnimationSpeed.Value * currentNode.movementAnimationMultiplier * Time.deltaTime);
+			transform.position = Vector3.MoveTowards(transform.position, currentWaypoint.WorldPosition, (float)unit.MovementAnimationSpeed.Value * currentNode.movementAnimationMultiplier * Time.deltaTime);
 			yield return null;
 
 		}

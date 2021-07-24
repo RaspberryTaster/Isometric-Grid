@@ -5,9 +5,7 @@ using UnityEngine;
 
 public class DistanceCheck : MonoBehaviour
 {
-	private Pathfinding pathfinding;
 	private SquareGrid grid;
-	public List<Node> withinRangeNodes = new List<Node>();
 	public bool gizmoGrid;
 
 	public delegate void AddNeighbour(Node node);
@@ -19,16 +17,10 @@ public class DistanceCheck : MonoBehaviour
 		{
 			grid = FindObjectOfType<SquareGrid>();
 		}
-		if (pathfinding == null)
-		{
-			pathfinding = FindObjectOfType<Pathfinding>();
-		}
 	}
-	public void SetUp(Transform unit, Node targetNode,int minimumRange, int maximumRange)
+	public void SetUp(Transform unitTransform, Node targetNode)
 	{
-		withinRangeNodes.Clear();
-		withinRangeNodes = grid.NodeGrid.GetWithinRange(targetNode, minimumRange, maximumRange);
-		closestNode = ClosestNode(withinRangeNodes, grid.NodeGrid.NodeFromWorldPoint(unit.position), targetNode);
+		//closestNode = ClosestNode(withinRangeNodes, grid.NodeGrid.NodeFromWorldPoint(unitTransform.position), targetNode);
 	}
 
 	public Node ClosestNode(List<Node> withinRangeNodes,Node seeker, Node target)
@@ -39,11 +31,11 @@ public class DistanceCheck : MonoBehaviour
 		{
 			if(closest == null)
 			{
-				SetClosest(withinRangeNodes[i], grid.GetDistance(withinRangeNodes[i], seeker));
+				SetClosest(withinRangeNodes[i], grid.GetDistance(withinRangeNodes[i], seeker, Pathfinding.Instance.DiagonalCost, Pathfinding.Instance.HorizontalCost));
 			}
 			else
 			{
-				int distanceToNode = grid.GetDistance(withinRangeNodes[i], seeker);
+				int distanceToNode = grid.GetDistance(withinRangeNodes[i], seeker, Pathfinding.Instance.DiagonalCost, Pathfinding.Instance.HorizontalCost);
 				if (closestDistance > distanceToNode)
 				{
 					SetClosest(withinRangeNodes[i], distanceToNode);
@@ -56,8 +48,8 @@ public class DistanceCheck : MonoBehaviour
 		{
 			if(closestDistance == distance)
 			{
-				int distanceFromClosest = grid.GetDistance(closest, target);
-				int distanceFromNewest = grid.GetDistance(node, target);
+				int distanceFromClosest = grid.GetDistance(closest, target, Pathfinding.Instance.DiagonalCost, Pathfinding.Instance.HorizontalCost);
+				int distanceFromNewest = grid.GetDistance(node, target, Pathfinding.Instance.DiagonalCost, Pathfinding.Instance.HorizontalCost);
 				if (distanceFromClosest > distanceFromNewest) return;
 			}
 			closest = node;
@@ -69,14 +61,5 @@ public class DistanceCheck : MonoBehaviour
 	{
 		if (gizmoGrid == false) return;
 
-		if (withinRangeNodes != null)
-		{
-			foreach (Node n in withinRangeNodes)
-			{
-				Gizmos.color = n == closestNode ? Color.blue : Color.red;
-				Gizmos.DrawWireCube(n.WorldPosition, Vector3.one * (grid.NodeDiameter - .3f));
-			}
-
-		}
 	}
 }

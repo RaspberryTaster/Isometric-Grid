@@ -30,20 +30,24 @@ namespace Assets.Combat.Weapons
 		}
 	}
 }
-public struct Die
-{
-	public int numberOfDie;
-	public int dieValue;
-}
 public enum WeaponType
 { 
 	melee,range
 }
+
+[Serializable]
 public struct Range
 {
-	public int minimumRange;
-	public int maximumRange;
-	public int sweetSpot;
+	public int MinimumRange;
+	public int MaximumRange;
+	public int SweetSpot;
+
+	public Range(int maximumRange, int minimumRange = 1, int sweetSpot = 1)
+	{
+		MinimumRange = minimumRange;
+		MaximumRange = maximumRange;
+		SweetSpot = sweetSpot;
+	}
 }
 public enum Handedness
 { 

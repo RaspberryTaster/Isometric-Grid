@@ -57,11 +57,11 @@ public class Pathfinding : Singleton<Pathfinding>
 						continue;
 					}
 
-					int newMovementCostToNeighbour = currentNode.GCost + grid.GetDistance(currentNode, neighbour) + neighbour.MovementPenalty;
+					int newMovementCostToNeighbour = currentNode.GCost + grid.GetDistance(currentNode, neighbour, 2, horizontalCost) + neighbour.MovementPenalty;
 					if (newMovementCostToNeighbour < neighbour.GCost || !openSet.Contains(neighbour))
 					{
 						neighbour.GCost = newMovementCostToNeighbour;
-						neighbour.HCost = grid.GetDistance(neighbour, targetNode);
+						neighbour.HCost = grid.GetDistance(neighbour, targetNode, 2, horizontalCost);
 						neighbour.parent = currentNode;
 
 						if (!openSet.Contains(neighbour))

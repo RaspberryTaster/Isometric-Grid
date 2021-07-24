@@ -6,9 +6,10 @@ public class Ranged : IRange
 {
 	private const int MAXIMUMCLAMP = 99999;
 
-	private int sweetSpot;
+
 	private int minimumRange;
 	private int maximumRange;
+	private int sweetSpot;
 
 	public int SweetSpot
 	{
@@ -45,11 +46,11 @@ public class Ranged : IRange
 		}
 	}
 
-	public InRangeData CheckRange(Unit user, int minimumRange = 1, int maximumRange = 1, int sweetSpot = 1)
+	public InRangeData CheckRange(Unit user)
 	{
-		SweetSpot = sweetSpot;
-		MinimumRange = minimumRange;
-		MaximumRange = maximumRange;
+		SweetSpot = user.rangedWeaponRange.SweetSpot;
+		MinimumRange = user.rangedWeaponRange.MinimumRange;
+		MaximumRange = user.rangedWeaponRange.MaximumRange;
 
 		List<Unit> suitableUnits = new List<Unit>();
 
@@ -59,7 +60,7 @@ public class Ranged : IRange
 		{
 			foreach(Unit u in n.OccupyingUnits)
 			{
-				if (!suitableUnits.Contains(u)) continue;
+				if (suitableUnits.Contains(u)) continue;
 				suitableUnits.Add(u);
 			}
 		}

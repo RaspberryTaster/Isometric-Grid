@@ -1,9 +1,13 @@
+using Assets.Combat.Powers.Range;
 using Kryz.CharacterStats;
 using NaughtyAttributes;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
+	public int Level;
+
 	public RaspberryStat HitPoints;
 
 	[ShowNativeProperty] public int Bloodied
@@ -14,7 +18,7 @@ public class Unit : MonoBehaviour
 		}
 	}
 
-	public int Initative;
+	public CharacterStat Initative;
 
 	[Space]
 	[BoxGroup("Ability Scores")] public int Strength = 10;
@@ -36,16 +40,20 @@ public class Unit : MonoBehaviour
 	[Space]
 	public CharacterStat MovementAnimationSpeed = new CharacterStat(10);
 
-	public Vector2Int attackRange = new Vector2Int(1,1);
-
 	public int WeaponDamage = 5;
 	public int WeaponEnhancement = 0;
 	public int WeaponProficiency = 2;
 
+	public Range meleeWeaponRange;
+	public Range rangedWeaponRange;
 	public PowerHandler powerHandler;
+	public List<Node> OccupyingNodes;
+
+	public ControlState currentState;
 	private void Awake()
 	{
 		powerHandler = GetComponent<PowerHandler>();
+		Initative = new CharacterStat(Dexterity / 2);
 	}
 	public void AttackOpponent(Unit target)
 	{
@@ -56,5 +64,29 @@ public class Unit : MonoBehaviour
 	public void TakeDamage(int damage)
 	{
 		HitPoints.ReduceCurrent(damage);
+		Debug.Log($"{this} took {damage} damage.");
 	}
+
+	public void UnOccupy()
+	{
+		int count = OccupyingNodes.Count;
+		for (int i = 0; i < count; i++)
+		{
+			OccupyingNodes[i].UnOccupy(this);
+		}
+		OccupyingNodes.Clear();
+	}
+
+	public void Occupy(Node n)
+	{
+		n.Occupy(this);
+	}
+	public void GetInitaitve()
+	{
+
+	}
+}
+public enum ControlState
+{
+	ATTACK, MOVEMENT
 }

@@ -7,15 +7,16 @@ public class UnitMovementInput : MonoBehaviour
 {
 	public DistanceCheck SurroundingNodes;
 	public Node selectedNode;
-	public UnitMovement unit;
-	public Unit controlledUnitCombatComponent;
+	public UnitMovement unitMovement;
+	public Unit unit;
 	public StateMachine stateMachine;
+	public bool CanMove;
 	PlayerInput playerInput;
 
 	void Awake()
 	{
 		playerInput = GetComponent<PlayerInput>();
-		controlledUnitCombatComponent = unit.GetComponent<Unit>();
+		unit = unitMovement.GetComponent<Unit>();
 	}
 
 	private void OnEnable()
@@ -30,8 +31,9 @@ public class UnitMovementInput : MonoBehaviour
 
 	private void PlayerInput_OnHitRaycast(RaycastHit hit)
 	{
-		unit.SetDistanceNodes();
-		/*
+		if (unit.currentState != ControlState.MOVEMENT) return;
+		unitMovement.SetDistanceNodes();
+		
 		UnitMovement targetUnit = hit.collider.GetComponent<UnitMovement>();
 		
 		Node targetUnitNode = null;
@@ -39,35 +41,35 @@ public class UnitMovementInput : MonoBehaviour
 		{
 			targetUnitNode = SquareGrid.Instance.NodeGrid.NodeFromWorldPoint(targetUnit.transform.position);
 		}
-		*/
+		
 		Node hitNode = SquareGrid.Instance.NodeGrid.NodeFromWorldPoint(hit.point);
-		//Unit targtCombatComponent = hit.collider.GetComponent<Unit>();
+		Unit targtCombatComponent = hit.collider.GetComponent<Unit>();
 
 		int stoppingDistance = 0;
 		IAction action;
-		Action_Types action_Types;
-		/*
-		if (targetUnit != null && targetUnitNode != null && unit.WithinRangeNodes.Contains(targetUnitNode))
+		ActionTypesDebug actionTypesDebug;
+		
+		if (targetUnit != null && targetUnitNode != null && unit.powerHandler.rangeData.nodesInRange.Contains(targetUnitNode))
 		{
-			SurroundingNodes.SetUp(unit.transform, targetUnitNode, controlledUnitCombatComponent.attackRange.x, controlledUnitCombatComponent.attackRange.y);
+			SurroundingNodes.SetUp(unit.transform, targetUnitNode);
 			selectedNode = SurroundingNodes.closestNode;
-			MoveAction moveAction = new MoveAction(unit, stateMachine, selectedNode, 0);
-			action = new AttackAction(controlledUnitCombatComponent, stateMachine, targtCombatComponent, moveAction);
-			action_Types = Action_Types.ATTACK;
+			MoveAction moveAction = new MoveAction(unitMovement, stateMachine, selectedNode, 0);
+			action = new AttackAction(unit, stateMachine, targtCombatComponent, moveAction);
+			actionTypesDebug = ActionTypesDebug.ATTACK;
 		}
 		else
 		{
 			selectedNode = hitNode;
-			action = new MoveAction(unit, stateMachine, selectedNode, stoppingDistance);
-			action_Types = Action_Types.WALK;
+			action = new MoveAction(unitMovement, stateMachine, selectedNode, stoppingDistance);
+			actionTypesDebug = ActionTypesDebug.WALK;
 		}
-		*/
+		
 
-		selectedNode = hitNode;
-		action = new MoveAction(unit, stateMachine, selectedNode, stoppingDistance);
-		action_Types = Action_Types.WALK;
-		if (selectedNode == null || !selectedNode.Walkable || action == null || !unit.MovementNodes.Contains(selectedNode)) return;
-		stateMachine.Dequeue_All_Before_Adding_Action(action, action_Types);
+		//selectedNode = hitNode;
+		//action = new MoveAction(unitMovement, stateMachine, selectedNode, stoppingDistance);
+		//actionTypesDebug = ActionTypesDebug.WALK;
+		if (selectedNode == null || !selectedNode.Walkable || action == null || !unitMovement.MovementNodes.Contains(selectedNode)) return;
+		stateMachine.Dequeue_All_Before_Adding_Action(action, actionTypesDebug);
 	}
 
 	private void OnDrawGizmos()
