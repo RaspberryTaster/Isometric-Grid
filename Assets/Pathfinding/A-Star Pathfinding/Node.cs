@@ -1,17 +1,25 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 public enum TIleMode
 {
-	DEFAULT = 0, UNREACHABLE = 1, ATTACKRANGE = 2, MOVEMENT = 3
+	DEFAULT = 0, UNREACHABLE = 1, MOVEMENT = 2, ATTACKRANGE = 3
 }
 
 [System.Serializable]
 public class Node : IHeapItem<Node>
 {
 	public string Name = "Node";
-	public int DefaultNodeIndex;
+	public List<int> TileIndexList = new List<int>();
+	public int HighestTileIndex
+	{ 
+		get
+		{
+			return TileIndexList.AsQueryable().Max();
+		}
+	}
 
 	public bool Selected;
 	public bool Walkable;
@@ -33,7 +41,7 @@ public class Node : IHeapItem<Node>
 		WorldPosition = _worldPos;
 		GridPosition = new Vector2Int(_gridX, _gridY);
 		this.nodeObject = nodeObject;
-		this.DefaultNodeIndex = DefaultNodeIndex;
+		TileIndexList.Add(DefaultNodeIndex);
 		this.nodeObject.transform.position = WorldPosition;
 		SetColor(DefaultNodeIndex);
 		Name = name;
@@ -77,7 +85,7 @@ public class Node : IHeapItem<Node>
 		{
 			compare = HCost.CompareTo(nodeToCompare.HCost);
 		}
-		return -compare;
+		return compare *-1;
 	}
 
 	public string Designation()
@@ -87,7 +95,20 @@ public class Node : IHeapItem<Node>
 
 	public void SetColor(int index)
 	{
-		if (nodeObject == null) return;
-		nodeObject.ApplyColor(index);
+		TileIndexList.Add(index);
+		if (nodeObject == null || TileIndexList.Count == 0) return;
+		nodeObject.ApplyColor(HighestTileIndex);
+	}
+
+	public void RemoveColor(int index)
+	{
+		if(TileIndexList.Contains(index))
+		{
+			TileIndexList.Remove(index);
+
+		}
+
+		if (nodeObject == null || TileIndexList.Count == 0) return;
+		nodeObject.ApplyColor(HighestTileIndex);
 	}
 }

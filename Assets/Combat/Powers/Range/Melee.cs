@@ -14,6 +14,14 @@ namespace Assets.Combat.Powers.Range
 		private int maximumRange;
 		private int minimumRange;
 		private int sweetSpot;
+
+		public Melee(int maximumRange, int minimumRange, int sweetSpot)
+		{
+			this.maximumRange = maximumRange;
+			this.minimumRange = minimumRange;
+			this.sweetSpot = sweetSpot;
+		}
+
 		public int SweetSpot
 		{
 			get
@@ -51,10 +59,6 @@ namespace Assets.Combat.Powers.Range
 
 		public InRangeData CheckRange(Unit user)
 		{
-			SweetSpot = user.meleeWeaponRange.SweetSpot;
-			MinimumRange = user.meleeWeaponRange.MinimumRange;
-			MaximumRange = user.meleeWeaponRange.MaximumRange;
-
 			List<Unit> suitableUnits = new List<Unit>();
 
 			List<Node> nodes = SquareGrid.Instance.NodeGrid.GetWithinRange(SquareGrid.Instance.NodeGrid.NodeFromWorldPoint(user.transform.position), MinimumRange, MaximumRange);

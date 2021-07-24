@@ -30,6 +30,11 @@ public class PowerHandler : MonoBehaviour
     
     public void SelectPower(IPower power, InRangeData inRangeData)
 	{
+		foreach (Node n in rangeData.nodesInRange)
+		{
+			n.RemoveColor((int)TIleMode.ATTACKRANGE);
+		}
+
 		unitMovement.SetDistanceNodes();
 		TargetUnits.Clear();
 		unit.currentState = ControlState.ATTACK;

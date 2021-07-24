@@ -11,6 +11,13 @@ public class Ranged : IRange
 	private int maximumRange;
 	private int sweetSpot;
 
+	public Ranged(int maximumRange, int minimumRange = 1, int sweetSpot = 1)
+	{
+		this.minimumRange = minimumRange;
+		this.maximumRange = maximumRange;
+		this.sweetSpot = sweetSpot;
+	}
+
 	public int SweetSpot
 	{
 		get
@@ -48,10 +55,6 @@ public class Ranged : IRange
 
 	public InRangeData CheckRange(Unit user)
 	{
-		SweetSpot = user.rangedWeaponRange.SweetSpot;
-		MinimumRange = user.rangedWeaponRange.MinimumRange;
-		MaximumRange = user.rangedWeaponRange.MaximumRange;
-
 		List<Unit> suitableUnits = new List<Unit>();
 
 		List<Node> nodes = SquareGrid.Instance.NodeGrid.GetWithinRange(SquareGrid.Instance.NodeGrid.NodeFromWorldPoint(user.transform.position), MinimumRange, MaximumRange);

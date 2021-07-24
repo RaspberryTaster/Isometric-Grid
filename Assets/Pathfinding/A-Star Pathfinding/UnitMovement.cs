@@ -62,7 +62,7 @@ public class UnitMovement : MonoBehaviour
 	{
 		foreach (Node n in MovementNodes)
 		{
-			n.SetColor(n.DefaultNodeIndex);
+			n.RemoveColor((int)TIleMode.MOVEMENT);
 		}
 
 		if(SquareGrid.Instance.NodeGrid == null)

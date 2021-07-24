@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerInput : Singleton<PlayerInput>
 {
@@ -17,19 +18,19 @@ public class PlayerInput : Singleton<PlayerInput>
     // Update is called once per frame
     void Update()
 	{
+		if (EventSystem.current.IsPointerOverGameObject()) return;
+		
 		MouseClick();
-
 		MouseHover();
 
 	}
+
 
 	private void MouseHover()
 	{
 		Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 		if (Physics.Raycast(ray, out RaycastHit hit, 900))
 		{
-
-
 			OnHiglight?.Invoke(hit);
 		}
 	}

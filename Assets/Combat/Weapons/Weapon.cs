@@ -3,113 +3,58 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using UnityEngine;
 
 namespace Assets.Combat.Weapons
 {
-	public	class Weapon : ScriptableObject
+	[Serializable]
+	public class Weapon : IWeapon
 	{
-		public int ProficencyBonus;
-		public Die WeaponDie;
-		public WeaponType WeaponType;
-		public Range Range;
-		public Handedness Handedness;
-		public WeaponProperty[] WeaponProperties;
-		public int Price;
-		public int Weight;
+		private string name;
+		private int price;
+		private Die weaponDie;
+		private int proficencyBonus;
+		private int weight;
 
 
-		List<IWeaponProperty> GetWeaponProperties()
+		private WeaponType weaponType;
+		private IRange range;
+		private Handedness handedness;
+		private List<IWeaponProperty> weaponProperties;
+
+		public string Name => name;
+
+		public int Price => price;
+
+		public Die WeaponDie => weaponDie;
+
+		public int ProficencyBonus => proficencyBonus;
+
+		public int Weight => weight;
+
+		public WeaponType WeaponType => weaponType;
+
+		public IRange Range => range;
+
+		public Handedness Handedness => handedness;
+
+		public List<IWeaponProperty> WeaponProperties => weaponProperties;
+
+		public Weapon(string name, int price,
+		Die weaponDie, int proficencyBonus,
+		int weight, WeaponType weaponType,
+		IRange range, Handedness handedness,
+		List<IWeaponProperty> weaponProperties)
 		{
-			List<IWeaponProperty> value = new List<IWeaponProperty>();
-			foreach(WeaponProperty weaponProperty in WeaponProperties)
-			{
-				value.Add(weaponProperty.GetWeaponProperty());
-			}
-			return value;
-		}
-	}
-}
-public enum WeaponType
-{ 
-	melee,range
-}
-
-[Serializable]
-public struct Range
-{
-	public int MinimumRange;
-	public int MaximumRange;
-	public int SweetSpot;
-
-	public Range(int maximumRange, int minimumRange = 1, int sweetSpot = 1)
-	{
-		MinimumRange = minimumRange;
-		MaximumRange = maximumRange;
-		SweetSpot = sweetSpot;
-	}
-}
-public enum Handedness
-{ 
-	TWOHANDED,ONEHANDED
-}
-public enum ProficiencyCategory
-{
-	SIMPLE, MILITARY, SUPERIOR
-}
-public class WeaponProperty : ScriptableObject
-{
-	public WeaponPropertyType WeaponPropertyType;
-	public IWeaponProperty GetWeaponProperty()
-	{
-		IWeaponProperty weaponProperty = new NullWeaponPropery();
-		switch (WeaponPropertyType)
-		{
-			case WeaponPropertyType.BRUTAL:
-				weaponProperty = new BrutalWeaponProperty();
-				break;
-			case WeaponPropertyType.BRUTAL2:
-				weaponProperty = new BrutalWeaponProperty(2);
-				break;
-			case WeaponPropertyType.BRUTAL3:
-				weaponProperty = new BrutalWeaponProperty(3);
-				break;
+			this.name = name;
+			this.price = price;
+			this.weaponDie = weaponDie;
+			this.proficencyBonus = proficencyBonus;
+			this.weight = weight;
+			this.weaponType = weaponType;
+			this.range = range;
+			this.handedness = handedness;
+			this.weaponProperties = weaponProperties;
 		}
 
-		//Have a eneum for high crit etc
-		//http://hastur.net/wiki/Weapon_properties_(4E)
-		return weaponProperty;
-	}
-
-}
-public enum WeaponPropertyType
-{ 
-	HIGH_CRIT,BRUTAL, BRUTAL2, BRUTAL3
-}
-
-public interface IWeaponProperty
-{
-	//needs a reference to the user and the actual weapon.
-}
-public class NullWeaponPropery : IWeaponProperty
-{
-
-}
-public class BrutalWeaponProperty : IWeaponProperty
-{
-	int brutalValue;
-	int minimumRoll
-	{ 
-		get
-		{
-			return brutalValue + 1;
-		}
-	}
-	
-
-	public BrutalWeaponProperty(int brutalValue = 1)
-	{
-		this.brutalValue = brutalValue;
 	}
 }
-

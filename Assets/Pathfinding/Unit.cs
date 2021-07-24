@@ -1,4 +1,5 @@
 using Assets.Combat.Powers.Range;
+using Assets.Combat.Weapons;
 using Kryz.CharacterStats;
 using NaughtyAttributes;
 using System.Collections.Generic;
@@ -44,16 +45,22 @@ public class Unit : MonoBehaviour
 	public int WeaponEnhancement = 0;
 	public int WeaponProficiency = 2;
 
-	public Range meleeWeaponRange;
-	public Range rangedWeaponRange;
 	public PowerHandler powerHandler;
 	public List<Node> OccupyingNodes;
 
 	public ControlState currentState;
+
+	public WeaponData MeleeWeapon;
+	public WeaponData RangedWeapon;
+	public IWeapon meleeWeapon;
+	public IWeapon rangedWeapon;
+	public IWeapon equippedWeapon;
 	private void Awake()
 	{
 		powerHandler = GetComponent<PowerHandler>();
 		Initative = new CharacterStat(Dexterity / 2);
+		meleeWeapon = MeleeWeapon.GetWeapon();
+		rangedWeapon = RangedWeapon.GetWeapon();
 	}
 	public void AttackOpponent(Unit target)
 	{
@@ -77,6 +84,14 @@ public class Unit : MonoBehaviour
 		OccupyingNodes.Clear();
 	}
 
+	public void EquipMelee()
+	{
+		equippedWeapon = meleeWeapon;
+	}
+	public void EquipRanged()
+	{
+		equippedWeapon = rangedWeapon;
+	}
 	public void Occupy(Node n)
 	{
 		n.Occupy(this);

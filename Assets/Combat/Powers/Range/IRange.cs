@@ -4,9 +4,9 @@ using UnityEngine;
 
 public interface IRange 
 {
-	public int SweetSpot { get; set; }
-	public int MinimumRange { get; set; }
-	public int MaximumRange { get; set; }
+	public int SweetSpot { get;}
+	public int MinimumRange { get;}
+	public int MaximumRange { get;}
 	public InRangeData CheckRange(Unit user);
 }
 [System.Serializable]
