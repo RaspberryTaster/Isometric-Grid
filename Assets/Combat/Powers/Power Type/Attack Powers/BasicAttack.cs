@@ -76,4 +76,9 @@ public class BasicAttack : IAttackPower
 	{
 
 	}
+
+	public void Update()
+	{
+		range = unit.equippedWeapon.Range;
+	}
 }

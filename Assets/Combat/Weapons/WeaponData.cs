@@ -8,6 +8,7 @@ using UnityEngine;
 
 namespace Assets.Combat.Weapons
 {
+	[CreateAssetMenu]
 	public	class WeaponData : ScriptableObject
 	{
 		public int ProficencyBonus;

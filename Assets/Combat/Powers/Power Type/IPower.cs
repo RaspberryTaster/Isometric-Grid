@@ -7,5 +7,6 @@ public interface IPower
 	public void SelectPower();
 	public void Execute();
 	public bool CanExecute();
+	public void Update();
 	public void Effect(Unit target);
 }

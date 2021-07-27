@@ -59,9 +59,9 @@ public class Ranged : IRange
 
 		List<Node> nodes = SquareGrid.Instance.NodeGrid.GetWithinRange(SquareGrid.Instance.NodeGrid.NodeFromWorldPoint(user.transform.position), MinimumRange, MaximumRange);
 
-		foreach(Node n in nodes)
+		foreach (Node n in nodes)
 		{
-			foreach(Unit u in n.OccupyingUnits)
+			foreach (Unit u in n.OccupyingUnits)
 			{
 				if (suitableUnits.Contains(u)) continue;
 				suitableUnits.Add(u);

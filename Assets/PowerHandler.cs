@@ -25,7 +25,9 @@ public class PowerHandler : MonoBehaviour
 	[Button]
 	public void Test()
 	{
-        powers[0].SelectPower();
+		IPower power = new BasicAttack(unit);
+		power.Update();
+        power.SelectPower();
 	}
     
     public void SelectPower(IPower power, InRangeData inRangeData)
@@ -85,8 +87,18 @@ public class PowerHandler : MonoBehaviour
 	public void Clear()
 	{
 		unit.currentState = ControlState.MOVEMENT;
-		rangeData.nodesInRange.Clear();
+		ClearNodes();
 		rangeData.suitableUnits.Clear();
 		TargetUnits.Clear();
+	}
+
+	public void ClearNodes()
+	{
+		int count = rangeData.nodesInRange.Count;
+		for (int i = 0; i < count; i++)
+		{
+			rangeData.nodesInRange[0].RemoveColor((int)TIleMode.ATTACKRANGE);
+			rangeData.nodesInRange.RemoveAt(0);
+		}
 	}
 }

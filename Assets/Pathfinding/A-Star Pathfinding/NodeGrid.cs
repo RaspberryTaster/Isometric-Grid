@@ -115,7 +115,7 @@ namespace Assets
 					List<Node> newlatestNeighbours = new List<Node>();
 					for (int o = 0; o < frontier.Count; o++)
 					{
-						List<Node> list = GetAdjacentNodes(frontier[o], false);
+						List<Node> list = GetNeighbours(frontier[o]);
 						for (int p = 0; p < list.Count; p++)
 						{
 							if (reached.Contains(list[p]) || center == list[p] || newlatestNeighbours.Contains(list[p])) continue;

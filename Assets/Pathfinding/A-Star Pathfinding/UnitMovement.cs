@@ -80,6 +80,7 @@ public class UnitMovement : MonoBehaviour
 			n.SetColor((int)TIleMode.MOVEMENT);
 		}
 	}
+
 	public MovementNodes DijkstraFrontier(Node center)
 	{
 		List<Node> edge = new List<Node>();
