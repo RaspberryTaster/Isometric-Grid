@@ -5,7 +5,7 @@ using NaughtyAttributes;
 using System;
 
 [Serializable]
-public class RaspberryStat
+public class DepletingStat
 {
     [SerializeField] private int current = 1;
     public int CurrentValue
@@ -24,12 +24,12 @@ public class RaspberryStat
 
     public int Maximum = 1;
 
-    public RaspberryStat(int maximum, int current)
+    public DepletingStat(int maximum, int current)
     {
         SetCurrent(current);
         SetMaximum(maximum);
     }
-    public RaspberryStat(int maximum = 1)
+    public DepletingStat(int maximum = 1)
     {
         SetMaximum(maximum);
         SetCurrentToMaximum();

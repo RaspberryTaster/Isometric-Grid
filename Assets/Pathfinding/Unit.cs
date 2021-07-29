@@ -9,7 +9,7 @@ public class Unit : MonoBehaviour
 {
 	public int Level;
 
-	public RaspberryStat HitPoints;
+	public DepletingStat HitPoints;
 
 	[ShowNativeProperty] public int Bloodied
 	{ 
@@ -35,9 +35,9 @@ public class Unit : MonoBehaviour
 	[BoxGroup("Defences")] public CharacterStat Will = new CharacterStat(CharacterSheetLibrary.BASEDEFENCE);
 
 	[Space]
-	[BoxGroup("Actions")] public RaspberryStat StandardAction;
-	[BoxGroup("Actions")] public RaspberryStat MinorAction;
-	[BoxGroup("Actions")] public RaspberryStat MovementPoints;
+	[BoxGroup("Actions")] public DepletingStat StandardAction;
+	[BoxGroup("Actions")] public DepletingStat MinorAction;
+	[BoxGroup("Actions")] public DepletingStat MovementPoints;
 	[Space]
 	public CharacterStat MovementAnimationSpeed = new CharacterStat(10);
 
