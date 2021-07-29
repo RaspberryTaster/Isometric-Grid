@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PowerHandler : MonoBehaviour
 {
-    public Unit unit;
+    private Unit unit;
 	public UnitMovement unitMovement;
     public List<IPower> powers = new List<IPower>();
 	public List<Unit> TargetUnits = new List<Unit>();

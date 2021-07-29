@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class SelectedNodeUI : MonoBehaviour
+public class SelectedNodeUI : Singleton<SelectedNodeUI>
 {
     public TextMeshProUGUI nodeName;
     public TextMeshProUGUI gridPosition;

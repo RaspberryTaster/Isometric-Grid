@@ -29,10 +29,10 @@ public class Unit : MonoBehaviour
 	[BoxGroup("Ability Scores")] public int Int = 10;
 	[BoxGroup("Ability Scores")] public int Charisma = 10;
 
-	[BoxGroup("Defences")] public int ArmorClass = 4;
-	[BoxGroup("Defences")] public int Fortitude = 0;
-	[BoxGroup("Defences")] public int Reflex = 0;
-	[BoxGroup("Defences")] public int Will = 0;
+	[BoxGroup("Defences")] public CharacterStat ArmorClass = new CharacterStat(CharacterSheetLibrary.BASEDEFENCE);
+	[BoxGroup("Defences")] public CharacterStat Fortitude = new CharacterStat(CharacterSheetLibrary.BASEDEFENCE);
+	[BoxGroup("Defences")] public CharacterStat Reflex = new CharacterStat(CharacterSheetLibrary.BASEDEFENCE);
+	[BoxGroup("Defences")] public CharacterStat Will = new CharacterStat(CharacterSheetLibrary.BASEDEFENCE);
 
 	[Space]
 	[BoxGroup("Actions")] public RaspberryStat StandardAction;
@@ -45,7 +45,7 @@ public class Unit : MonoBehaviour
 	public int WeaponEnhancement = 0;
 	public int WeaponProficiency = 2;
 
-	public PowerHandler powerHandler;
+
 	public List<Node> OccupyingNodes;
 
 	public ControlState currentState;
@@ -55,6 +55,8 @@ public class Unit : MonoBehaviour
 	public IWeapon meleeWeapon;
 	public IWeapon rangedWeapon;
 	public IWeapon equippedWeapon;
+
+	public PowerHandler powerHandler;
 	private void Awake()
 	{
 		powerHandler = GetComponent<PowerHandler>();

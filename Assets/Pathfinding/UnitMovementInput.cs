@@ -6,32 +6,30 @@ using UnityEngine;
 public class UnitMovementInput : MonoBehaviour
 {
 	public DistanceCheck SurroundingNodes;
-	public Node selectedNode;
 	public UnitMovement unitMovement;
-	public Unit unit;
 	public StateMachine stateMachine;
-	public bool CanMove;
-	PlayerInput playerInput;
+	public Node selectedNode;
 
-	void Awake()
-	{
-		playerInput = GetComponent<PlayerInput>();
-		unit = unitMovement.GetComponent<Unit>();
-	}
+	public bool CanMove;
 
 	private void OnEnable()
 	{
-		playerInput.OnClick += PlayerInput_OnHitRaycast;
+		PlayerInput.Instance.OnSelectUnit += UpdateUnitComponents;
+		PlayerInput.Instance.OnLeftClick += PlayerInput_OnHitRaycast;
+
 	}
 
 	public void OnDisable()
 	{
-		playerInput.OnClick -= PlayerInput_OnHitRaycast;
+		PlayerInput.Instance.OnLeftClick -= PlayerInput_OnHitRaycast;
+		PlayerInput.Instance.OnSelectUnit -= UpdateUnitComponents;
+
+
 	}
 
 	private void PlayerInput_OnHitRaycast(RaycastHit hit)
 	{
-		if (unit.currentState != ControlState.MOVEMENT) return;
+		if (stateMachine == null ||PlayerInput.Instance.ControlledUnit == null ||PlayerInput.Instance.ControlledUnit.currentState != ControlState.MOVEMENT || unitMovement == null) return;
 		unitMovement.SetDistanceNodes();
 		
 		UnitMovement targetUnit = hit.collider.GetComponent<UnitMovement>();
@@ -49,12 +47,12 @@ public class UnitMovementInput : MonoBehaviour
 		IAction action;
 		ActionTypesDebug actionTypesDebug;
 		
-		if (targetUnit != null && targetUnitNode != null && unit.powerHandler.rangeData.nodesInRange.Contains(targetUnitNode))
+		if (targetUnit != null && targetUnitNode != null && UnitPowerInput.Instance.powerHandler.rangeData.nodesInRange.Contains(targetUnitNode))
 		{
-			SurroundingNodes.SetUp(unit.transform, targetUnitNode);
+			SurroundingNodes.SetUp(PlayerInput.Instance.ControlledUnit.transform, targetUnitNode);
 			selectedNode = SurroundingNodes.closestNode;
 			MoveAction moveAction = new MoveAction(unitMovement, stateMachine, selectedNode, 0);
-			action = new AttackAction(unit, stateMachine, targtCombatComponent, moveAction);
+			action = new AttackAction(PlayerInput.Instance.ControlledUnit, stateMachine, targtCombatComponent, moveAction);
 			actionTypesDebug = ActionTypesDebug.ATTACK;
 		}
 		else
@@ -72,6 +70,11 @@ public class UnitMovementInput : MonoBehaviour
 		stateMachine.Dequeue_All_Before_Adding_Action(action, actionTypesDebug);
 	}
 
+	public void UpdateUnitComponents()
+	{
+		unitMovement = PlayerInput.Instance.ControlledUnit.GetComponent<UnitMovement>();
+		stateMachine = PlayerInput.Instance.ControlledUnit.GetComponent<StateMachine>();
+	}
 	private void OnDrawGizmos()
 	{
 		if (selectedNode != null)
@@ -79,6 +82,5 @@ public class UnitMovementInput : MonoBehaviour
 			Gizmos.color = Color.green;
 			Gizmos.DrawCube(selectedNode.WorldPosition, Vector3.one);
 		}
-
 	}
 }

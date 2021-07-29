@@ -15,6 +15,6 @@ public class StrengthArmorClass : IAttack
 	public bool AttackSuccesful(Unit instigator,Unit target)
 	{
 		int modifiers = instigator.Strength + (int)math.floor(instigator.Level / 2) + instigator.WeaponProficiency + instigator.WeaponEnhancement + Modifier;
-		return DiceLibrary.AttackRollSucessful(modifiers, target.ArmorClass);
+		return DiceLibrary.AttackRollSucessful(modifiers, (int)target.ArmorClass.Value);
 	}
 }
