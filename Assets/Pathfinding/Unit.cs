@@ -63,6 +63,7 @@ public class Unit : MonoBehaviour
 		Initative = new CharacterStat(Dexterity / 2);
 		meleeWeapon = MeleeWeapon.GetWeapon();
 		rangedWeapon = RangedWeapon.GetWeapon();
+		EquipMelee();
 	}
 	public void AttackOpponent(Unit target)
 	{

@@ -71,11 +71,11 @@ public class UnitMovement : MonoBehaviour
 		}
 
 		movementNodes = DijkstraFrontier(unit.OccupyingNodes[0]);
-		Debug.Log(MovementNodes.Count);
+		//Debug.Log(MovementNodes.Count);
 
 		for(int i = 0; i < MovementNodes.Count; i++)
 		{
-			Debug.Log(i);
+			//Debug.Log(i);
 			Node n = MovementNodes[i];
 			n.SetColor((int)TIleMode.MOVEMENT);
 		}

@@ -5,20 +5,17 @@ using UnityEngine;
 
 public class PowerHandler : MonoBehaviour
 {
-    private Unit unit;
+    [SerializeField] private Unit unit;
 	public UnitMovement unitMovement;
     public List<IPower> powers = new List<IPower>();
 	public List<Unit> TargetUnits = new List<Unit>();
     public IPower SelectedPower;
     public InRangeData rangeData;
-	private void Awake()
-	{
-        unit = GetComponent<Unit>();
-		unitMovement = GetComponent<UnitMovement>();
-	}
+
 	// Start is called before the first frame update
 	void Start()
     {
+		if (unit == null) return;
         powers.Add(new BasicAttack(unit));
     }
 
