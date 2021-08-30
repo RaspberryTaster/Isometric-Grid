@@ -13,12 +13,15 @@ namespace Assets.Combat.Weapons
 		private int price;
 		private Die weaponDie;
 		private int proficencyBonus;
+		private int enhancementBonus;
 		private int weight;
 
 
 		private WeaponType weaponType;
 		private IRange range;
 		private Handedness handedness;
+		private IDamage damage;
+		private IAttack attack;
 		private List<IWeaponProperty> weaponProperties;
 
 		public string Name => name;
@@ -39,11 +42,17 @@ namespace Assets.Combat.Weapons
 
 		public List<IWeaponProperty> WeaponProperties => weaponProperties;
 
+		public int EnhancementBonus => enhancementBonus;
+
+		public IAttack Attack => attack;
+
+		public IDamage Damage => damage;
+
 		public Weapon(string name, int price,
 		Die weaponDie, int proficencyBonus,
 		int weight, WeaponType weaponType,
 		IRange range, Handedness handedness,
-		List<IWeaponProperty> weaponProperties)
+		List<IWeaponProperty> weaponProperties, int enhancementBonus, IDamage damage, IAttack attack)
 		{
 			this.name = name;
 			this.price = price;
@@ -54,6 +63,9 @@ namespace Assets.Combat.Weapons
 			this.range = range;
 			this.handedness = handedness;
 			this.weaponProperties = weaponProperties;
+			this.enhancementBonus = enhancementBonus;
+			this.damage = damage;
+			this.attack = attack;
 		}
 
 	}

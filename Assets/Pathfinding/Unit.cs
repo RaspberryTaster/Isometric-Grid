@@ -45,11 +45,6 @@ public class Unit : MonoBehaviour
 	[Space]
 	public CharacterStat MovementAnimationSpeed = new CharacterStat(10);
 
-	public int WeaponDamage = 5;
-	public int WeaponEnhancement = 0;
-	public int WeaponProficiency = 2;
-
-
 	public List<Node> OccupyingNodes;
 
 	public ControlState currentState;

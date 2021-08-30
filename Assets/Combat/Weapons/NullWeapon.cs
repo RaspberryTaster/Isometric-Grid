@@ -1,4 +1,5 @@
-﻿using Assets.Combat.Powers.Range;
+﻿using Assets.Combat.Damage;
+using Assets.Combat.Powers.Range;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,5 +27,11 @@ namespace Assets.Combat.Weapons
 		public Handedness Handedness => Handedness.ONEHANDED;
 
 		public List<IWeaponProperty> WeaponProperties => new List<IWeaponProperty>();
+
+		public int EnhancementBonus => 0;
+
+		public IAttack Attack => new StrengthArmorClass();
+
+		public IDamage Damage => new NullDamage();
 	}
 }

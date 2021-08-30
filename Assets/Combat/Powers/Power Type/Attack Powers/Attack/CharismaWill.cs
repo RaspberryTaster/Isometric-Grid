@@ -17,7 +17,7 @@ namespace Assets.Combat.Powers.Power_Type.Attack_Powers.Attack
 
 		public bool AttackSuccesful(Unit instigator, Unit target)
 		{
-			int modifiers = instigator.Charisma + instigator.WeaponProficiency + instigator.WeaponEnhancement + Modifier;
+			int modifiers = instigator.Charisma + instigator.equippedWeapon.ProficencyBonus + instigator.equippedWeapon.EnhancementBonus + Modifier;
 			return DiceLibrary.AttackRollSucessful(modifiers, (int)target.Will.Value);
 		}
 	}

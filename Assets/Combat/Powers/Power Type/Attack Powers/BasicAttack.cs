@@ -15,7 +15,7 @@ public class BasicAttack : IAttackPower
 	public BasicAttack(Unit unit)
 	{
 		this.unit = unit;
-		Update(unit.equippedWeapon.Range, new ActionCost(1), new StrengthArmorClass(), new StrengthWeapon());
+		Update(unit.equippedWeapon.Range, new ActionCost(1), unit.equippedWeapon.Attack, unit.equippedWeapon.Damage);
 	}
 	public BasicAttack(Unit unit, IRange range, IActionType actionCost, IAttack attack, IDamage damage)
 	{

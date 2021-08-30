@@ -12,11 +12,14 @@ namespace Assets.Combat.Weapons
 		public int Price { get; }
 		public Die WeaponDie { get; }
 		public int ProficencyBonus { get; }
+		public int EnhancementBonus { get; }
 		public int Weight { get; }
 
 
 		public WeaponType WeaponType { get; }
 		public IRange Range { get; }
+		public IAttack Attack { get; }
+		public IDamage Damage { get; }
 		public Handedness Handedness { get; }
 		public List<IWeaponProperty> WeaponProperties { get; }
 	}

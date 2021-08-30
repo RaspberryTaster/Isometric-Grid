@@ -1,4 +1,5 @@
-﻿using Assets.Combat.Powers.Range;
+﻿using Assets.Combat.Damage;
+using Assets.Combat.Powers.Range;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,8 +10,10 @@ namespace Assets.Combat.Weapons
 	public	class WeaponData : ScriptableObject
 	{
 		public int ProficencyBonus;
+		public int EhancementBonus;
 		public Die WeaponDie;
-		public WeaponScaling WeaponScaling;
+		public StatScaling DamageScaling;
+		public StatScaling AttackScaling;
 		public WeaponType WeaponType;
 
 		public Range Range;
@@ -22,7 +25,7 @@ namespace Assets.Combat.Weapons
 
 		public IWeapon GetWeapon()
 		{
-			return new Weapon(name, Price, WeaponDie, ProficencyBonus, Weight, WeaponType, GetRange(), Handedness, GetWeaponProperties());
+			return new Weapon(name, Price, WeaponDie, ProficencyBonus, Weight, WeaponType, GetRange(), Handedness, GetWeaponProperties(), EhancementBonus, GetDamage(), new StrengthArmorClass());
 		}
 
 		public IRange GetRange()
@@ -34,6 +37,30 @@ namespace Assets.Combat.Weapons
 				_ => new NullRange(),
 			};
 		}
+
+		public IDamage GetDamage()
+		{
+			return DamageScaling switch
+			{
+				StatScaling.STRENGTH => new StrengthWeapon(),
+				StatScaling.DEXTERITY => new DexterityWeapon(),
+				StatScaling.CONSTITUTION => new ConstitutionWeapon(),
+				_ => new NullWeaponScaling(),
+			};
+		}
+
+		/*
+		public IAttack GeAttack()
+		{
+			return AttackScaling switch
+			{
+				StatScaling.STRENGTH => new StrengthWeapon(),
+				StatScaling.DEXTERITY => new DexterityWeapon(),
+				StatScaling.CONSTITUTION => new ConstitutionWeapon(),
+				_ => new NullWeaponScaling(),
+			};
+		}
+		*/
 		List<IWeaponProperty> GetWeaponProperties()
 		{
 			List<IWeaponProperty> value = new List<IWeaponProperty>();
@@ -72,9 +99,9 @@ public enum ProficiencyCategory
 {
 	SIMPLE, MILITARY, SUPERIOR
 }
-public enum WeaponScaling
+public enum StatScaling
 {
-	STRENGTH, DEXTERITY, CONSTITUTION, INTELLIGENCE, WISDOM, CHARISMA
+	STRENGTH, DEXTERITY, CONSTITUTION, INTELLIGENCE, WISDOM, CHARISMA, NONE
 }
 public class WeaponProperty : ScriptableObject
 {
