@@ -17,6 +17,7 @@ MonoBehaviour:
     Count: 1
     Minimum: 1
     Maximum: 6
+  WeaponScaling: 2
   WeaponType: 0
   Range:
     MinimumRange: 1

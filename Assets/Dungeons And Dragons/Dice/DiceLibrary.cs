@@ -21,7 +21,7 @@ public static class DiceLibrary
 	}
 }
 [System.Serializable]
-public struct Die
+public class Die
 {
 	public int Count;
 	public int Minimum;
@@ -32,5 +32,10 @@ public struct Die
 		Count = count;
 		Minimum = minimum;
 		Maximum = maximum;
+	}
+
+	public override string ToString()
+	{
+		return $"{Minimum * Count} - {Maximum * Count}";
 	}
 }

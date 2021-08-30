@@ -1,3 +1,4 @@
+using Assets.Combat.Buffs;
 using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
@@ -20,13 +21,18 @@ public class PowerHandler : MonoBehaviour
     }
 
 	[Button]
-	public void Test()
+	public void AttackTest()
 	{
 		IPower power = new BasicAttack(unit);
 		power.Update();
         power.SelectPower();
 	}
-    
+    public void BuffTest()
+	{
+		IPower power = new FalseLife(unit);
+		power.Update();
+		power.SelectPower();
+	}
     public void SelectPower(IPower power, InRangeData inRangeData)
 	{
 		foreach (Node n in rangeData.nodesInRange)

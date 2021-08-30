@@ -13,6 +13,7 @@ public class HealthBarUI : MonoBehaviour
     public BarUI healthBar;
     public BarUI shieldBar;
 	public Image background;
+	public FollowWorld followWorld;
     [SerializeField] private BarColor colorScheme;
     public float MaxValue
 	{
@@ -22,14 +23,15 @@ public class HealthBarUI : MonoBehaviour
             return combinedValue > MaxHealth ? combinedValue : MaxHealth;
 		}
 	}
-
-    void OnValidate()
+	private void Awake()
+	{
+		followWorld = GetComponent<FollowWorld>();
+	}
+	void OnValidate()
     {
 		healthBar.LowValue = LowValue;
 		shieldBar.LowValue = LowValue;
-        healthBar.Execute(MaxValue, CurHealth);
-        shieldBar.Execute(MaxValue, Shield);
-		UpdateColor();
+		ValueChanged();
     }
 
 	public void SetColor(BarColor barColor)
@@ -63,13 +65,27 @@ public class HealthBarUI : MonoBehaviour
 		}
 	}
 
-	public void Execute(float shieldValue, float healthValue)
+	public void ValueChanged()
 	{
-        CurHealth = healthValue;
-        Shield = shieldValue;
         healthBar.Execute(MaxValue, CurHealth);
-        shieldBar.Execute(MaxValue, Shield);
+		shieldBar.Execute(MaxValue, Shield);
+
+		UpdateColor();
     }
+	public void HitPointSetUp(DepletingStat depletingStat)
+	{
+		MaxHealth = depletingStat.Maximum;
+		CurHealth = depletingStat.CurrentValue;
+
+		ValueChanged();
+	}
+
+	public void BarrierPointSetUp(DepletingStat depletingStat)
+	{
+		Shield = depletingStat.CurrentValue;
+
+		ValueChanged();
+	}
 }
 public enum UIState
 {

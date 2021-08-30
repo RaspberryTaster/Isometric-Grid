@@ -6,6 +6,6 @@ public class StrengthWeapon : IDamage
 {
 	public int Damage(Unit instigator, Unit target)
 	{
-		return instigator.WeaponDamage + instigator.WeaponEnhancement;
+		return DiceLibrary.RollDie(instigator.equippedWeapon.WeaponDie) + instigator.WeaponEnhancement + instigator.Strength;
 	}
 }

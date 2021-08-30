@@ -15,7 +15,7 @@ public class BasicAttack : IAttackPower
 	public BasicAttack(Unit unit)
 	{
 		this.unit = unit;
-		Update(unit.equippedWeapon.Range, new StandardAction(), new StrengthArmorClass(), new StrengthWeapon());
+		Update(unit.equippedWeapon.Range, new ActionCost(1), new StrengthArmorClass(), new StrengthWeapon());
 	}
 	public BasicAttack(Unit unit, IRange range, IActionType actionCost, IAttack attack, IDamage damage)
 	{
@@ -65,7 +65,7 @@ public class BasicAttack : IAttackPower
 
 	public void Hit(Unit target)
 	{
-		unit.TakeDamage(damage.Damage(unit, target));
+		target.TakeDamage(damage.Damage(unit, target));
 	}
 	public void Missed(Unit target)
 	{

@@ -1,3 +1,4 @@
+using Assets.Combat.Buffs;
 using Assets.Combat.Powers.Range;
 using Assets.Combat.Weapons;
 using Kryz.CharacterStats;
@@ -10,14 +11,17 @@ public class Unit : MonoBehaviour
 	public int Level;
 
 	public DepletingStat HitPoints;
-
-	[ShowNativeProperty] public int Bloodied
-	{ 
+	[ShowNativeProperty]
+	public int Bloodied
+	{
 		get
 		{
 			return HitPoints.Maximum / 2;
 		}
 	}
+
+	public DepletingStat BarrierPoints = new DepletingStat(1000, 0);
+	public List<BarrierInstance> BarrierInstances = new List<BarrierInstance>();
 
 	public CharacterStat Initative;
 
@@ -65,6 +69,10 @@ public class Unit : MonoBehaviour
 		rangedWeapon = RangedWeapon.GetWeapon();
 		EquipMelee();
 	}
+	private void Start()
+	{
+		HealthBarManager.Instance.Subscribe(this);
+	}
 	public void AttackOpponent(Unit target)
 	{
 		Debug.Log($"{gameObject.name} attacked {target.gameObject.name}!");
@@ -73,10 +81,39 @@ public class Unit : MonoBehaviour
 
 	public void TakeDamage(int damage)
 	{
-		HitPoints.ReduceCurrent(damage);
-		Debug.Log($"{this} took {damage} damage.");
+		int count = BarrierInstances.Count;
+		for (int i = 0; i < count; i++)
+		{
+			if (damage == 0) break;
+			damage = BarrierInstances[i].Damage(damage);
+		}
+
+		if(damage > 0)
+		{
+			HitPoints.ReduceCurrent(damage);
+			Debug.Log($"{this} took {damage} damage.");
+		}
+		else if(damage < 0)
+		{
+			HitPoints.IncreaseCurrent(damage * -1);
+			Debug.Log($"{this} healed for {damage} {HitPoints}.");
+		}
+		
 	}
 
+	public List<BarrierInstance> InstancesWithSameSource(object source)
+	{
+		List<BarrierInstance> value = new List<BarrierInstance>();
+		foreach(BarrierInstance barrier in BarrierInstances)
+		{
+			if(barrier.source.GetType() == source.GetType())
+			{
+				value.Add(barrier);
+			}
+		}
+
+		return value;
+	}
 	public void UnOccupy()
 	{
 		int count = OccupyingNodes.Count;

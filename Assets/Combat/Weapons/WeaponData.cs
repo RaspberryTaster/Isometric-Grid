@@ -1,9 +1,6 @@
 ﻿using Assets.Combat.Powers.Range;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Combat.Weapons
@@ -13,6 +10,7 @@ namespace Assets.Combat.Weapons
 	{
 		public int ProficencyBonus;
 		public Die WeaponDie;
+		public WeaponScaling WeaponScaling;
 		public WeaponType WeaponType;
 
 		public Range Range;
@@ -73,6 +71,10 @@ public enum Handedness
 public enum ProficiencyCategory
 {
 	SIMPLE, MILITARY, SUPERIOR
+}
+public enum WeaponScaling
+{
+	STRENGTH, DEXTERITY, CONSTITUTION, INTELLIGENCE, WISDOM, CHARISMA
 }
 public class WeaponProperty : ScriptableObject
 {

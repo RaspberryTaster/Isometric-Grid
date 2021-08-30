@@ -26,7 +26,7 @@ RectTransform:
   m_GameObject: {fileID: 4977730370771498677}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_Children:
   - {fileID: 5282193514725549528}
   - {fileID: 3304421864876524714}
@@ -51,11 +51,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34551c3e3c8ccaf4fbc8697923d1e22f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  State: 0
   MaxHealth: 40
   CurHealth: 40
-  Shield: 0
+  Shield: 50
+  LowValue: 0
   healthBar: {fileID: 8660016975439246645}
   shieldBar: {fileID: 7098423672979957916}
+  background: {fileID: 8505305805643692525}
+  colorScheme:
+    HealthPrimary: {r: 0, g: 1, b: 0.4156863, a: 1}
+    HealthSecondary: {r: 0, g: 1, b: 0.4156863, a: 1}
+    ShieldPrimary: {r: 0.3529412, g: 0.78823537, b: 1, a: 1}
+    ShieldSecondary: {r: 0.3529412, g: 0.78823537, b: 1, a: 1}
+    BackgroundPrimary: {r: 0, g: 0, b: 0, a: 1}
+    BackgroundSecondary: {r: 0, g: 0, b: 0, a: 1}
 --- !u!1 &7001748232639763102
 GameObject:
   m_ObjectHideFlags: 0
@@ -114,7 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.0754717, g: 0.0754717, b: 0.0754717, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -190,7 +200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.35283017, g: 0.7876321, b: 1, a: 1}
+  m_Color: {r: 0.3529412, g: 0.78823537, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -219,8 +229,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dee56e2adec49a541965590d190d8c8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaximumBarUI: 90
   MaxValue: 40
-  CurValue: 0
+  CurValue: 50
+  LowValue: 0
+  Low: 0
   ShouldReferToOtherBar: 1
   ReferalBar: {fileID: 8660016975439246645}
   barImage: {fileID: 4432593443207050702}
@@ -283,7 +296,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.4174893, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.4156863, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -295,7 +308,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 1
+  m_FillAmount: 0.44444445
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -312,8 +325,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dee56e2adec49a541965590d190d8c8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaximumBarUI: 90
   MaxValue: 40
   CurValue: 40
+  LowValue: 0
+  Low: 0
   ShouldReferToOtherBar: 0
   ReferalBar: {fileID: 0}
   barImage: {fileID: 8714752527084362772}

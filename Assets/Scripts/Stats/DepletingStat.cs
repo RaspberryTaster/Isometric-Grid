@@ -19,10 +19,15 @@ public class DepletingStat
             }
 
             current = value;
+            Debug.Log(current);
+            OnValueChange?.Invoke(this);
         }
     }
 
     public int Maximum = 1;
+
+    public delegate void ValueChange(DepletingStat depletingStat);
+    public ValueChange OnValueChange;
 
     public DepletingStat(int maximum, int current)
     {
@@ -39,10 +44,6 @@ public class DepletingStat
     {
         SetCurrent(Maximum);
     }
-    public void ReduceCurrent(int value)
-    {
-        CurrentValue -= value;
-    }
 
     public void ReduceCurrent(int value, int minimum_Clamp)
     {
@@ -50,23 +51,30 @@ public class DepletingStat
         Clamp(minimum_Clamp);
     }
 
-    public void IncreaseCurrent(int value)
-    {
-        CurrentValue += value;
-    }
-
     public void IncreaseCurrent(int value, int minimum_Clamp)
     {
         CurrentValue += value;
         Clamp(minimum_Clamp);
     }
-    public void SetCurrent(int number)
-    {
-        CurrentValue = number;
-    }
+
     public void SetMaximum(int number)
     {
         Maximum = number;
+    }
+
+    public void ReduceCurrent(int value)
+    {
+        CurrentValue -= value;
+    }
+
+    public void IncreaseCurrent(int value)
+    {
+        CurrentValue += value;
+    }
+
+    public void SetCurrent(int number)
+    {
+        CurrentValue = number;
     }
 
     private void Clamp(int minimum)
