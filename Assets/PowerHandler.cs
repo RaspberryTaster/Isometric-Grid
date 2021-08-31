@@ -7,7 +7,6 @@ using UnityEngine;
 public class PowerHandler : MonoBehaviour
 {
     [SerializeField] private Unit unit;
-	public UnitMovement unitMovement;
     public List<IPower> powers = new List<IPower>();
 	public List<Unit> TargetUnits = new List<Unit>();
     public IPower SelectedPower;
@@ -24,12 +23,14 @@ public class PowerHandler : MonoBehaviour
 	public void AttackTest()
 	{
 		IPower power = new BasicAttack(unit);
+		UnitPowerInput.Instance.SelectingUnits = true;
 		power.Update();
         power.SelectPower();
 	}
     public void BuffTest()
 	{
 		IPower power = new FalseLife(unit);
+		UnitPowerInput.Instance.SelectingUnits = true;
 		power.Update();
 		power.SelectPower();
 	}
@@ -40,7 +41,7 @@ public class PowerHandler : MonoBehaviour
 			n.RemoveColor((int)TIleMode.ATTACKRANGE);
 		}
 
-		unitMovement.SetDistanceNodes();
+		unit.UnitMovement.SetDistanceNodes();
 		TargetUnits.Clear();
 		unit.currentState = ControlState.ATTACK;
 		SelectedPower = power;

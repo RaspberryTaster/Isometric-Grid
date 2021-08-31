@@ -13,12 +13,14 @@ MonoBehaviour:
   m_Name: Hand crossbow
   m_EditorClassIdentifier: 
   ProficencyBonus: 2
+  EhancementBonus: 0
   WeaponDie:
     Count: 1
     Minimum: 1
     Maximum: 6
-  WeaponScaling: 2
-  WeaponType: 0
+  DamageScaling: 1
+  AttackScaling: 1
+  WeaponType: 1
   Range:
     MinimumRange: 1
     MaximumRange: 20

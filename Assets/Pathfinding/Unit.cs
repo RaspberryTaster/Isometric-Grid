@@ -30,10 +30,54 @@ public class Unit : MonoBehaviour
 	[BoxGroup("Ability Scores")] public int Dexterity = 10;
 	[BoxGroup("Ability Scores")] public int Constitution = 10;
 	[BoxGroup("Ability Scores")] public int Wisdom = 10;
-	[BoxGroup("Ability Scores")] public int Int = 10;
+	[BoxGroup("Ability Scores")] public int Intelligence = 10;
 	[BoxGroup("Ability Scores")] public int Charisma = 10;
 
-	[BoxGroup("Defences")] public CharacterStat ArmorClass = new CharacterStat(CharacterSheetLibrary.BASEDEFENCE);
+
+	public int StrengthMod
+	{
+		get
+		{
+			return (Strength - 10) / 2; 
+		}
+	}
+	public int DexterityMod
+	{
+		get
+		{
+			return (Dexterity - 10) / 2;
+		}
+	}
+	public int ConstitutionMod
+	{ 
+		get
+		{
+			return (Constitution - 10) / 2;
+		}
+	}
+	public int IntelligenceMod
+	{
+		get
+		{
+			return (Intelligence - 10) / 2;
+		}
+	}
+	public int WisdomMod
+	{
+		get
+		{
+			return (Wisdom - 10) / 2;
+		}
+	}
+	public int CharismaMod
+	{
+		get
+		{
+			return (Charisma - 10) / 2;
+		}
+	}
+
+	[BoxGroup("Defences")] public CharacterStat Deflection = new CharacterStat(CharacterSheetLibrary.BASEDEFENCE);
 	[BoxGroup("Defences")] public CharacterStat Fortitude = new CharacterStat(CharacterSheetLibrary.BASEDEFENCE);
 	[BoxGroup("Defences")] public CharacterStat Reflex = new CharacterStat(CharacterSheetLibrary.BASEDEFENCE);
 	[BoxGroup("Defences")] public CharacterStat Will = new CharacterStat(CharacterSheetLibrary.BASEDEFENCE);
@@ -42,11 +86,6 @@ public class Unit : MonoBehaviour
 	[BoxGroup("Actions")] public DepletingStat StandardAction;
 	[BoxGroup("Actions")] public DepletingStat MinorAction;
 	[BoxGroup("Actions")] public DepletingStat MovementPoints;
-	[Space]
-	public CharacterStat MovementAnimationSpeed = new CharacterStat(10);
-
-	public List<Node> OccupyingNodes;
-
 	public ControlState currentState;
 
 	public WeaponData MeleeWeapon;
@@ -56,10 +95,13 @@ public class Unit : MonoBehaviour
 	public IWeapon equippedWeapon;
 
 	public PowerHandler powerHandler;
+	public UnitMovement UnitMovement;
 	private void Awake()
 	{
+		UnitMovement = GetComponent<UnitMovement>();
+		Deflection.AddModifier(new StatModifier(DexterityMod, StatModType.Flat, this));
 		powerHandler = GetComponent<PowerHandler>();
-		Initative = new CharacterStat(Dexterity / 2);
+		Initative = new CharacterStat(DexterityMod);
 		meleeWeapon = MeleeWeapon.GetWeapon();
 		rangedWeapon = RangedWeapon.GetWeapon();
 		EquipMelee();
@@ -71,7 +113,7 @@ public class Unit : MonoBehaviour
 	public void AttackOpponent(Unit target)
 	{
 		Debug.Log($"{gameObject.name} attacked {target.gameObject.name}!");
-		target.TakeDamage(Strength);
+		target.TakeDamage(StrengthMod);
 	}
 
 	public void TakeDamage(int damage)
@@ -109,15 +151,6 @@ public class Unit : MonoBehaviour
 
 		return value;
 	}
-	public void UnOccupy()
-	{
-		int count = OccupyingNodes.Count;
-		for (int i = 0; i < count; i++)
-		{
-			OccupyingNodes[i].UnOccupy(this);
-		}
-		OccupyingNodes.Clear();
-	}
 
 	public void EquipMelee()
 	{
@@ -127,13 +160,10 @@ public class Unit : MonoBehaviour
 	{
 		equippedWeapon = rangedWeapon;
 	}
-	public void Occupy(Node n)
-	{
-		n.Occupy(this);
-	}
-	public void GetInitaitve()
-	{
 
+	public int GetInitaitve()
+	{
+		return (int)Initative.Value + DiceLibrary.RollDie(new Die(1, 1, 20)); 
 	}
 }
 public enum ControlState

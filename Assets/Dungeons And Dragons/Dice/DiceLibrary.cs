@@ -17,7 +17,9 @@ public static class DiceLibrary
 
 	public static bool AttackRollSucessful(int modifiers, int targetNumber)
 	{
-		return RollDie(TwentyDie) + modifiers >= targetNumber;
+		int v = RollDie(TwentyDie);
+		Debug.Log($"Rolled, {v} + {modifiers} against {targetNumber}");
+		return v + modifiers >= targetNumber;
 	}
 }
 [System.Serializable]

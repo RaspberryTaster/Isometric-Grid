@@ -1,4 +1,6 @@
 ﻿using Assets.Combat.Damage;
+using Assets.Combat.Powers.Power_Type.Attack_Powers.Attack;
+using Assets.Combat.Powers.Power_Type.Attack_Powers.Attack.Target_Defence;
 using Assets.Combat.Powers.Range;
 using System;
 using System.Collections.Generic;
@@ -14,6 +16,7 @@ namespace Assets.Combat.Weapons
 		public Die WeaponDie;
 		public StatScaling DamageScaling;
 		public StatScaling AttackScaling;
+		public TargetDefence TargetDefence;
 		public WeaponType WeaponType;
 
 		public Range Range;
@@ -25,7 +28,7 @@ namespace Assets.Combat.Weapons
 
 		public IWeapon GetWeapon()
 		{
-			return new Weapon(name, Price, WeaponDie, ProficencyBonus, Weight, WeaponType, GetRange(), Handedness, GetWeaponProperties(), EhancementBonus, GetDamage(), new StrengthArmorClass());
+			return new Weapon(name, Price, WeaponDie, ProficencyBonus, Weight, WeaponType, GetRange(), Handedness, GetWeaponProperties(), EhancementBonus, GetDamage(), GetAttack());
 		}
 
 		public IRange GetRange()
@@ -49,18 +52,39 @@ namespace Assets.Combat.Weapons
 			};
 		}
 
-		/*
-		public IAttack GeAttack()
+		public IAttack GetAttack()
 		{
+			ITargetDefence targetDefence = new TargetDefenceNULL();
+
+			switch (TargetDefence)
+			{
+				case TargetDefence.DEFLECTION:
+					targetDefence = new TargetDeflection();
+					break;
+				case TargetDefence.FORTITUDE:
+					targetDefence = new TargetFortitude();
+					break;
+				case TargetDefence.WILL:
+					targetDefence = new TargetWill();
+					break;
+				case TargetDefence.REFLEX:
+					targetDefence = new TargetReflex();
+					break;
+			}
+
+
 			return AttackScaling switch
 			{
-				StatScaling.STRENGTH => new StrengthWeapon(),
-				StatScaling.DEXTERITY => new DexterityWeapon(),
-				StatScaling.CONSTITUTION => new ConstitutionWeapon(),
-				_ => new NullWeaponScaling(),
+				StatScaling.STRENGTH => new StrengthAttack(targetDefence),
+				StatScaling.DEXTERITY => new DexterityAttack(targetDefence),
+				StatScaling.CONSTITUTION => new ConstitutionAttack(targetDefence),
+				StatScaling.INTELLIGENCE => new IntelligenceAttack(targetDefence),
+				StatScaling.WISDOM => new WisdomAttack(targetDefence),
+				StatScaling.CHARISMA => new CharismaAttack(targetDefence),
+				_ => new NullAttack(),
 			};
 		}
-		*/
+
 		List<IWeaponProperty> GetWeaponProperties()
 		{
 			List<IWeaponProperty> value = new List<IWeaponProperty>();
@@ -93,8 +117,13 @@ public struct Range
 }
 public enum Handedness
 { 
-	TWOHANDED,ONEHANDED
+	TWOHANDED, ONEHANDED
 }
+public enum TargetDefence
+{
+	DEFLECTION, WILL, FORTITUDE, REFLEX
+}
+
 public enum ProficiencyCategory
 {
 	SIMPLE, MILITARY, SUPERIOR

@@ -29,7 +29,7 @@ public class SelectedUnitUI : Singleton<SelectedNodeUI>
 	public void Set(Unit unit)
 	{
         Name.text = "Name: " + unit.gameObject.name;
-        GridPosition.text = "Grid Position: " + unit.OccupyingNodes[0].GridPosition.ToString();
+        GridPosition.text = "Grid Position: " + unit.UnitMovement.OccupyingNodes[0].GridPosition.ToString();
         WorldPosition.text = "World Position: " + unit.transform.position.ToString();
 	}
 }

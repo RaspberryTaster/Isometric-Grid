@@ -10,7 +10,7 @@ namespace Assets.Combat.Damage
 	{
 		public int Damage(Unit instigator, Unit target)
 		{
-			return DiceLibrary.RollDie(instigator.equippedWeapon.WeaponDie) + instigator.equippedWeapon.EnhancementBonus + instigator.Dexterity;
+			return DiceLibrary.RollDie(instigator.equippedWeapon.WeaponDie) + instigator.equippedWeapon.EnhancementBonus + instigator.DexterityMod;
 		}
 	}
 }

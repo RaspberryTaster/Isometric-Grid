@@ -1,4 +1,5 @@
 ﻿using Assets.Combat.Damage;
+using Assets.Combat.Powers.Power_Type.Attack_Powers.Attack;
 using Assets.Combat.Powers.Range;
 using System;
 using System.Collections.Generic;
@@ -30,7 +31,7 @@ namespace Assets.Combat.Weapons
 
 		public int EnhancementBonus => 0;
 
-		public IAttack Attack => new StrengthArmorClass();
+		public IAttack Attack => new NullAttack();
 
 		public IDamage Damage => new NullDamage();
 	}

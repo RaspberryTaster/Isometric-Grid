@@ -3,6 +3,7 @@ using System.Collections;
 using NaughtyAttributes;
 using System;
 using System.Collections.Generic;
+using Kryz.CharacterStats;
 
 [RequireComponent(typeof(Unit))]
 public class UnitMovement : MonoBehaviour
@@ -16,6 +17,8 @@ public class UnitMovement : MonoBehaviour
 
 
 	public MovementNodes movementNodes;
+
+	public List<Node> OccupyingNodes;
 	public List<Node> MovementNodes
 	{
 		get
@@ -23,6 +26,8 @@ public class UnitMovement : MonoBehaviour
 			return movementNodes.walkable;
 		}
 	}
+
+	public CharacterStat MovementAnimationSpeed = new CharacterStat(10);
 
 	public bool DrawGizmos;
 	private void Awake()
@@ -36,10 +41,10 @@ public class UnitMovement : MonoBehaviour
 	private void Start()
 	{
 
-		unit.UnOccupy();
+		UnOccupy();
 		Node currentNode = SquareGrid.Instance.NodeGrid.NodeFromWorldPoint(transform.position);
 		transform.position = currentNode.WorldPosition;
-		unit.Occupy(currentNode);
+		Occupy(currentNode);
 		SetDistanceNodes();
 	}
 
@@ -70,7 +75,7 @@ public class UnitMovement : MonoBehaviour
 			Debug.LogWarning("Node grid is null");
 		}
 
-		movementNodes = DijkstraFrontier(unit.OccupyingNodes[0]);
+		movementNodes = DijkstraFrontier(OccupyingNodes[0]);
 		//Debug.Log(MovementNodes.Count);
 
 		for(int i = 0; i < MovementNodes.Count; i++)
@@ -144,9 +149,9 @@ public class UnitMovement : MonoBehaviour
 		Node currentWaypoint = path[0];
 		while (true) {
 			if (transform.position == currentWaypoint.WorldPosition) {
-				unit.UnOccupy();
+				UnOccupy();
 				currentNode = SquareGrid.Instance.NodeGrid.NodeFromWorldPoint(transform.position);
-				unit.Occupy(currentNode);
+				Occupy(currentNode);
 				targetIndex ++;
 				if (targetIndex >= path.Length) {
 					endOfPath?.Invoke(true);
@@ -155,11 +160,27 @@ public class UnitMovement : MonoBehaviour
 				currentWaypoint = path[targetIndex];
 			}
 
-			transform.position = Vector3.MoveTowards(transform.position, currentWaypoint.WorldPosition, (float)unit.MovementAnimationSpeed.Value * currentNode.movementAnimationMultiplier * Time.deltaTime);
+			transform.position = Vector3.MoveTowards(transform.position, currentWaypoint.WorldPosition, (float)unit.UnitMovement.MovementAnimationSpeed.Value * currentNode.movementAnimationMultiplier * Time.deltaTime);
 			yield return null;
 
 		}
 	}
+
+	public void Occupy(Node n)
+	{
+		n.Occupy(unit);
+	}
+
+	public void UnOccupy()
+	{
+		int count = OccupyingNodes.Count;
+		for (int i = 0; i < count; i++)
+		{
+			OccupyingNodes[i].UnOccupy(unit);
+		}
+		OccupyingNodes.Clear();
+	}
+
 
 	private void DrawPathGizmos()
 	{

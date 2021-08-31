@@ -84,8 +84,8 @@ MonoBehaviour:
     HealthSecondary: {r: 0, g: 1, b: 0.4156863, a: 1}
     ShieldPrimary: {r: 0.3529412, g: 0.78823537, b: 1, a: 1}
     ShieldSecondary: {r: 0.3529412, g: 0.78823537, b: 1, a: 1}
-    BackgroundPrimary: {r: 0, g: 0, b: 0, a: 1}
-    BackgroundSecondary: {r: 0, g: 0, b: 0, a: 1}
+    BackgroundPrimary: {r: 1, g: 0, b: 0, a: 1}
+    BackgroundSecondary: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1001 &7685711543318517851
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -196,6 +196,10 @@ PrefabInstance:
     - target: {fileID: 7918147168422210403, guid: e699b0d128c43ee4795703eaf687b1ef, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8505305805643692525, guid: e699b0d128c43ee4795703eaf687b1ef, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8660016975439246645, guid: e699b0d128c43ee4795703eaf687b1ef, type: 3}
       propertyPath: CurValue

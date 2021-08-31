@@ -51,7 +51,7 @@ namespace Assets.Combat.Buffs
 
 		public void Effect(Unit target)
 		{
-			int value = (unit.Level / 2) + unit.Wisdom;
+			int value = (unit.Level / 2) + unit.WisdomMod;
 			BarrierInstance barrierInstance = new BarrierInstance(unit, value, this);
 			/*
 			List<BarrierInstance> barrierInstances = target.InstancesWithSameSource(barrierInstance.source);

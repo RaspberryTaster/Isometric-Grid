@@ -220,12 +220,6 @@ public class CameraController : MonoBehaviour
 		newPosition += value;
 	}
 
-	private void Move_Left()
-	{
-		Vector3 value = transform.right * -movementSpeed;
-		newPosition += value;
-	}
-
 	private void Move_Right()
 	{
 		Vector3 value = transform.right * movementSpeed;
